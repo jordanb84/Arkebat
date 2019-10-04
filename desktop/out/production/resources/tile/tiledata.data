@@ -1,0 +1,521 @@
+{
+    "tiles": [
+        {
+            "solid": false,
+            "name": "air",
+            "id": 0,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "base",
+            "id": 1,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_2",
+            "id": 2,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_3",
+            "id": 3,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_4",
+            "id": 4,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_5",
+            "id": 5,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_6",
+            "id": 6,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_7",
+            "id": 7,
+            "usesCustomClass": false,
+            "sheetY": 0,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_8",
+            "id": 8,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_9",
+            "id": 9,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_10",
+            "id": 10,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_11",
+            "id": 11,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_12",
+            "id": 12,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_13",
+            "id": 13,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_14",
+            "id": 14,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_15",
+            "id": 15,
+            "usesCustomClass": false,
+            "sheetY": 16,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_16",
+            "id": 16,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_17",
+            "id": 17,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_18",
+            "id": 18,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_19",
+            "id": 19,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_20",
+            "id": 20,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_21",
+            "id": 21,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_22",
+            "id": 22,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_23",
+            "id": 23,
+            "usesCustomClass": false,
+            "sheetY": 32,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_24",
+            "id": 24,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_25",
+            "id": 25,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_26",
+            "id": 26,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_27",
+            "id": 27,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_28",
+            "id": 28,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_29",
+            "id": 29,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_30",
+            "id": 30,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_31",
+            "id": 31,
+            "usesCustomClass": false,
+            "sheetY": 48,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_32",
+            "id": 32,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_33",
+            "id": 33,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_34",
+            "id": 34,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_35",
+            "id": 35,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_36",
+            "id": 36,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_37",
+            "id": 37,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_38",
+            "id": 38,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_39",
+            "id": 39,
+            "usesCustomClass": false,
+            "sheetY": 64,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_40",
+            "id": 40,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_41",
+            "id": 41,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_42",
+            "id": 42,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_43",
+            "id": 43,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_44",
+            "id": 44,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_45",
+            "id": 45,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_46",
+            "id": 46,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_47",
+            "id": 47,
+            "usesCustomClass": false,
+            "sheetY": 80,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_48",
+            "id": 48,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_49",
+            "id": 49,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_50",
+            "id": 50,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_51",
+            "id": 51,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_52",
+            "id": 52,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_53",
+            "id": 53,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_54",
+            "id": 54,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_55",
+            "id": 55,
+            "usesCustomClass": false,
+            "sheetY": 96,
+            "sheetX": 112
+        },
+        {
+            "solid": false,
+            "name": "tile_56",
+            "id": 56,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 0
+        },
+        {
+            "solid": false,
+            "name": "tile_57",
+            "id": 57,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 16
+        },
+        {
+            "solid": false,
+            "name": "tile_58",
+            "id": 58,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 32
+        },
+        {
+            "solid": false,
+            "name": "tile_59",
+            "id": 59,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 48
+        },
+        {
+            "solid": false,
+            "name": "tile_60",
+            "id": 60,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 64
+        },
+        {
+            "solid": false,
+            "name": "tile_61",
+            "id": 61,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 80
+        },
+        {
+            "solid": false,
+            "name": "tile_62",
+            "id": 62,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 96
+        },
+        {
+            "solid": false,
+            "name": "tile_63",
+            "id": 63,
+            "usesCustomClass": false,
+            "sheetY": 112,
+            "sheetX": 112
+        }
+    ],
+    "sheetTileRows": 8,
+    "sheetPath": "tile/basicSheet.png",
+    "tileWidth": 16,
+    "sheetTileColumns": 8,
+    "tileHeight": 16
+}
