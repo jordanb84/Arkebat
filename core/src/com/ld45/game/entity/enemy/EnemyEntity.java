@@ -34,9 +34,14 @@ public abstract class EnemyEntity extends LivingEntity {
             this.attackAnimation.getActiveSprite(this.getDirection()).setColor(Color.RED);
             this.attackAnimation.render(batch, this.getPosition(), this.getDirection());
             this.attackAnimation.getActiveSprite(this.getDirection()).setColor(Color.WHITE);
+
+            this.renderDamage(batch, this.attackAnimation.getActiveSprite(this.getDirection()));
         } else {
             this.getDirectionalAnimation().render(batch, this.getPosition(), this.getDirection());
+
+            this.renderDamage(batch, this.getDirectionalAnimation().getActiveSprite(this.getDirection()));
         }
+
     }
 
     @Override
@@ -61,6 +66,10 @@ public abstract class EnemyEntity extends LivingEntity {
             } else {
                 this.getDirectionalAnimation().update(this.getDirection());
             }
+        }
+
+        if(this.getHealth() <= 0) {
+            this.explode();
         }
     }
 

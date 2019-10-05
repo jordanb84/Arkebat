@@ -1,5 +1,10 @@
 package com.ld45.game.entity.enemy.impl;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.Animation;
 import com.ld45.game.animation.DirectionalAnimation;
@@ -54,7 +59,11 @@ public class EntityImp extends EnemyEntity {
     public void attackPlayer(EntityPlayer player) {
         Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
 
-        this.getParentMap().spawnEntity(new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination));
+        this.getParentMap().spawnEntity(new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3));
     }
 
+    @Override
+    public void render(SpriteBatch batch, OrthographicCamera camera) {
+        super.render(batch, camera);
+    }
 }

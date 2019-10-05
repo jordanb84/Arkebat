@@ -8,8 +8,8 @@ import com.ld45.game.map.Map;
 
 public class EntityFoodProjectile extends EntityProjectile {
 
-    public EntityFoodProjectile(ItemType item, Vector2 position, Map parentMap, Vector2 destination) {
-        super(position, parentMap, destination, 14);
+    public EntityFoodProjectile(ItemType item, Vector2 position, Map parentMap, Vector2 destination, boolean attacksPlayer) {
+        super(position, parentMap, destination, 14, attacksPlayer, item.DAMAGE);
         Animation animation = new Animation(1);
         animation.addFrame(item.SPRITE_PATH);
 

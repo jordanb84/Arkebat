@@ -62,7 +62,7 @@ public class PlayerInputMindState extends EntityMindState {
                 Vector2 projectilePosition = new Vector2(player.getPosition().x, player.getPosition().y);
                 Vector2 foodDestination = new Vector2(mouse.x, mouse.y);
 
-                EntityFoodProjectile foodProjectile = new EntityFoodProjectile(selectedItem, projectilePosition, player.getParentMap(), foodDestination);
+                EntityFoodProjectile foodProjectile = new EntityFoodProjectile(selectedItem, projectilePosition, player.getParentMap(), foodDestination, false);
 
                 player.getParentMap().spawnEntity(foodProjectile);
 

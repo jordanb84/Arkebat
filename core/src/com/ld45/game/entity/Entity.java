@@ -2,12 +2,14 @@ package com.ld45.game.entity;
 
 import box2dLight.PointLight;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.map.Map;
 
 import java.util.Random;
@@ -34,6 +36,14 @@ public abstract class Entity {
     private PointLight light;
     private Random lightFlickerRandom = new Random();
 
+    private boolean hasShadow;
+
+    private boolean damaged;
+    private float elapsedSinceDamage;
+    private float damageDuration = 1f;
+
+    private float health = 1;
+
     public Entity(Vector2 position, Map parentMap, float weight) {
         this.position = position;
         this.parentMap = parentMap;
@@ -45,6 +55,34 @@ public abstract class Entity {
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         this.getSprite().setPosition(this.getPosition().x, this.getPosition().y);
         this.getSprite().draw(batch);
+
+        if(this.hasShadow) {
+            this.getSprite().setPosition(this.getPosition().x - this.getWidth() / 2, this.getPosition().y - this.getHeight() / 2);
+            this.getSprite().setColor(Color.BLACK);
+            this.getSprite().setAlpha(0.5f);
+            this.getSprite().draw(batch);
+            this.getSprite().setColor(Color.WHITE);
+            this.getSprite().setAlpha(1);
+        }
+
+        this.renderDamage(batch, this.getSprite());
+    }
+
+    public void renderDamage(SpriteBatch batch, Sprite sprite) {
+        if(this.damaged) {
+            sprite.setPosition(this.getPosition().x, this.getPosition().y);
+            sprite.setColor(Color.FIREBRICK);
+            sprite.setAlpha(0.6f);
+            sprite.draw(batch);
+            sprite.setColor(Color.WHITE);
+            sprite.setAlpha(1);
+
+            this.elapsedSinceDamage += 1 * Gdx.graphics.getDeltaTime();
+
+            if(this.elapsedSinceDamage >= this.damageDuration) {
+                this.damaged = false;
+            }
+        }
     }
 
     public void update(OrthographicCamera camera) {
@@ -54,6 +92,10 @@ public abstract class Entity {
 
         if(this.hasLight()) {
             this.getLight().setPosition(this.getPosition().x + this.getWidth() / 2, this.getPosition().y + this.getHeight() / 2);
+        }
+
+        if(this.getHealth() <= 0) {
+            this.explode();
         }
     }
 
@@ -267,6 +309,18 @@ public abstract class Entity {
         }
     }
 
+    public void explode() {
+        int totalParticles = 10;
+
+        for(int particle = 0; particle < totalParticles; particle++) {
+            BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 2f, 1.2f, 1.2f, this.getSprite());
+
+            this.getParentMap().spawnEntity(burstEntity);
+        }
+
+        this.getParentMap().despawnEntity(this);
+    }
+
     public void onCollision(Direction direction) {
         this.colliding = true;
     }
@@ -301,6 +355,25 @@ public abstract class Entity {
         angle = angle * (180 / Math.PI);
 
         return angle;
+    }
+
+    public void setHasShadow(boolean hasShadow) {
+        this.hasShadow = hasShadow;
+    }
+
+    public void damage(float damage) {
+        this.health -= damage;
+
+        this.damaged = true;
+        this.elapsedSinceDamage = 0;
+    }
+
+    public float getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
     }
 
 }

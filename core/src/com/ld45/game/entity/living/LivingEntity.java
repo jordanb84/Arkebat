@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.ld45.game.entity.AnimatedEntity;
+import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.entity.mind.EntityMind;
 import com.ld45.game.map.Map;
 

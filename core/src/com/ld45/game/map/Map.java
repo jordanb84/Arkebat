@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.ld45.game.entity.Entity;
 import com.ld45.game.entity.droppeditem.EntityDroppedItem;
+import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.enemy.impl.EntityImp;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.item.ItemType;
@@ -21,6 +22,7 @@ import com.ld45.game.tile.Tile;
 import com.ld45.game.tile.TileRegistry;
 import com.ld45.game.ui.impl.HudContainer;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,8 @@ public class Map {
     private List<Entity> entities = new ArrayList<Entity>();
     private List<Entity> entitySpawnQueue = new ArrayList<Entity>();
     private List<Entity> entityDespawnQueue = new ArrayList<Entity>();
+
+    private List<EnemyEntity> enemyCache = new ArrayList<>();
 
     private float worldFriction = 2;
 
@@ -155,8 +159,12 @@ public class Map {
         batch.draw(this.tileMapFbo, 0, 0);
 
         for(Entity entity : this.getEntities()) {
-            entity.render(batch, camera);
+            if(!(entity instanceof EntityPlayer)) {
+                entity.render(batch, camera);
+            }
         }
+
+        this.getEntityPlayer().render(batch, camera);
 
         if(this.enableLights) {
             batch.end();
@@ -199,10 +207,18 @@ public class Map {
 
     public void spawnEntity(Entity entity) {
         this.entitySpawnQueue.add(entity);
+
+        if(entity instanceof EnemyEntity) {
+            this.enemyCache.add(((EnemyEntity) entity));
+        }
     }
 
     public void despawnEntity(Entity entity) {
         this.entityDespawnQueue.add(entity);
+
+        if(entity instanceof EnemyEntity) {
+            this.enemyCache.remove(((EnemyEntity) entity));
+        }
     }
 
     public List<Entity> getEntities() {
@@ -281,6 +297,10 @@ public class Map {
 
     public void setPlayer(EntityPlayer player) {
         this.player = player;
+    }
+
+    public List<EnemyEntity> getEnemyCache() {
+        return this.enemyCache;
     }
 
 }

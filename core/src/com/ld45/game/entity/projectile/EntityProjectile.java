@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.Animation;
 import com.ld45.game.entity.Direction;
 import com.ld45.game.entity.Entity;
+import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.map.Map;
 
@@ -17,10 +18,16 @@ public abstract class EntityProjectile extends Entity {
     private Vector2 destination;
     private Rectangle destinationBody = new Rectangle();
 
-    public EntityProjectile(Vector2 position, Map parentMap, Vector2 destination, float speed) {
+    private boolean attacksPlayer;
+
+    private float damage;
+
+    public EntityProjectile(Vector2 position, Map parentMap, Vector2 destination, float speed, boolean attacksPlayer, float damage) {
         super(position, parentMap, 0);
         this.animation = this.setupAnimation();
         this.destination = destination;
+        this.attacksPlayer = attacksPlayer;
+        this.damage = damage;
         this.setSpeed(speed, speed);
     }
 
@@ -40,15 +47,36 @@ public abstract class EntityProjectile extends Entity {
         this.animation.update();
 
         if(this.getBody().overlaps(this.destinationBody)) {
-            this.getParentMap().despawnEntity(this);
+            this.explode();
+        }
 
-            int totalParticles = 10;
+        if(this.attacksPlayer) {
+            if(this.getBody().overlaps(this.getParentMap().getEntityPlayer().getBody())) {
+                this.explode();
 
-            for(int particle = 0; particle < totalParticles; particle++) {
-                BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 2f, 1.2f, 1.2f, this.getSprite());
-
-                this.getParentMap().spawnEntity(burstEntity);
+                this.getParentMap().getEntityPlayer().damage(this.damage);
             }
+        } else {
+            for(EnemyEntity enemy : this.getParentMap().getEnemyCache()) {
+                if(this.getBody().overlaps(enemy.getBody())) {
+                    this.explode();
+
+                    enemy.damage(this.damage);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void explode() {
+        this.getParentMap().despawnEntity(this);
+
+        int totalParticles = 10;
+
+        for(int particle = 0; particle < totalParticles; particle++) {
+            BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 2f, 1.2f, 1.2f, this.getSprite());
+
+            this.getParentMap().spawnEntity(burstEntity);
         }
     }
 

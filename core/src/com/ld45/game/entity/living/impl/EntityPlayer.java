@@ -18,6 +18,8 @@ public class EntityPlayer extends LivingEntity {
         super(position, parentMap, 0.5f);
         this.setSpeed(8, 8);
         this.inventory = new Inventory(this);
+        this.setHasShadow(true);
+        this.setHealth(300);
     }
 
     @Override

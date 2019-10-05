@@ -7,8 +7,8 @@ import com.ld45.game.map.Map;
 
 public class EntityFlameProjectile extends EntityProjectile {
 
-    public EntityFlameProjectile(Vector2 position, Map parentMap, Vector2 destination) {
-        super(position, parentMap, destination, 12);
+    public EntityFlameProjectile(Vector2 position, Map parentMap, Vector2 destination, boolean attacksPlayer, float damage) {
+        super(position, parentMap, destination, 12, attacksPlayer, damage);
     }
 
     @Override
