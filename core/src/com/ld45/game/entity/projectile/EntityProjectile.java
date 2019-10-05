@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.Animation;
 import com.ld45.game.entity.Direction;
 import com.ld45.game.entity.Entity;
+import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.map.Map;
 
 public abstract class EntityProjectile extends Entity {
@@ -40,6 +41,14 @@ public abstract class EntityProjectile extends Entity {
 
         if(this.getBody().overlaps(this.destinationBody)) {
             this.getParentMap().despawnEntity(this);
+
+            int totalParticles = 10;
+
+            for(int particle = 0; particle < totalParticles; particle++) {
+                BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 2f, 1.2f, 1.2f, this.getSprite());
+
+                this.getParentMap().spawnEntity(burstEntity);
+            }
         }
     }
 

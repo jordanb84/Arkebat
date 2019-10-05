@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.entity.Entity;
+import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.item.ItemType;
 import com.ld45.game.map.Map;
@@ -66,6 +67,17 @@ public class EntityDroppedItem extends Entity {
         if(this.getBody().overlaps(player.getBody())) {
             player.getInventory().addItem(this.itemType, this.amount);
             this.getParentMap().despawnEntity(this);
+
+            int totalParticles = 10;
+
+            for(int particle = 0; particle < totalParticles; particle++) {
+                BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 1f, 0.8f, 0.8f, this.itemType.SPRITE);
+
+                this.getParentMap().spawnEntity(burstEntity);
+            }
+
+            //TODO spawn a bunch of burst entities here
+            //burst entity is just an entity with a rotation like +30 each one, then move toward rotation
         }
     }
 
