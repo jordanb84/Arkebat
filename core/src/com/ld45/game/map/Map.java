@@ -129,9 +129,9 @@ public class Map {
         Vector2 startingPosition = new Vector2(160, 1088);
         EntityPlayer player = new EntityPlayer(startingPosition, this);
 
-        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 32), this, ItemType.Cookie));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 64), this, ItemType.Bacon));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 128), this, ItemType.Bacon));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 32), this, ItemType.Cookie, 3));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 64), this, ItemType.Bacon, 5));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 128), this, ItemType.Bacon, 1));
 
         this.spawnEntity(player);
         this.setPlayer(player);

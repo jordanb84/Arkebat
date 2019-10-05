@@ -65,9 +65,9 @@ public class PlayerInputMindState extends EntityMindState {
                 EntityFoodProjectile foodProjectile = new EntityFoodProjectile(selectedItem, projectilePosition, player.getParentMap(), foodDestination);
 
                 player.getParentMap().spawnEntity(foodProjectile);
-            }
 
-            //parentEntity.getParentMap().spawnEntity(new EntityFlameProjectile(new Vector2(parentEntity.getPosition().x, parentEntity.getPosition().y), parentEntity.getParentMap(), flameDestination));
+                inventory.removeItem(selectedItem, 1);
+            }
         }
     }
 

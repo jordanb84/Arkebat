@@ -88,6 +88,18 @@ public class Inventory {
         }
     }
 
+    public void removeItem(ItemType item, int amount) {
+        InventoryCell itemCell = this.getFirstCellWithItem(item);
+
+        if(itemCell != null) {
+            itemCell.setAmount(itemCell.getAmount() - amount);
+
+            if(itemCell.getAmount() <= 0) {
+                itemCell.setItem(null, 0);
+            }
+        }
+    }
+
     public InventoryCell getFirstCellWithItem(ItemType item) {
         for(InventoryCell inventoryCell : this.inventoryCells) {
             if(inventoryCell.getItem() == item) {

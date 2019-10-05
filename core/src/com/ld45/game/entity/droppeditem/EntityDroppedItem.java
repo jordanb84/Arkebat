@@ -24,10 +24,13 @@ public class EntityDroppedItem extends Entity {
 
     private boolean scalingUp = true;
 
-    public EntityDroppedItem(Vector2 position, Map parentMap, ItemType itemType) {
+    private int amount;
+
+    public EntityDroppedItem(Vector2 position, Map parentMap, ItemType itemType, int amount) {
         super(position, parentMap, 0);
         this.itemType = itemType;
         this.setSprite(itemType.SPRITE);
+        this.amount = amount;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class EntityDroppedItem extends Entity {
         EntityPlayer player = this.getParentMap().getEntityPlayer();
 
         if(this.getBody().overlaps(player.getBody())) {
-            player.getInventory().addItem(this.itemType, 1);
+            player.getInventory().addItem(this.itemType, this.amount);
             this.getParentMap().despawnEntity(this);
         }
     }
