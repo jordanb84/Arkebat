@@ -1,5 +1,6 @@
 package com.ld45.game.entity.living.impl;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.Animation;
 import com.ld45.game.animation.DirectionalAnimation;
@@ -39,6 +40,12 @@ public class EntityPlayer extends LivingEntity {
 
     public Inventory getInventory() {
         return this.inventory;
+    }
+
+    @Override
+    public void update(OrthographicCamera camera) {
+        super.update(camera);
+        this.inventory.update(camera);
     }
 
 }

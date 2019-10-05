@@ -1,10 +1,14 @@
 package com.ld45.game.inventory;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.ld45.game.item.ItemType;
 import com.ld45.game.ui.SkinType;
 
@@ -16,10 +20,34 @@ public class InventoryCell extends ImageButton {
 
     private Label amountDisplay;
 
-    private float alpha = 0.8f;
+    private float alpha = 1f;
 
-    public InventoryCell(Skin skin) {
+    private boolean selected;
+
+    private TextTooltip tooltip;
+
+    private Inventory parentInventory;
+
+    private int cellIndex;
+
+    public InventoryCell(final Inventory parentInventory, final int cellIndex, Skin skin) {
         super(skin);
+        this.parentInventory = parentInventory;
+        this.cellIndex = cellIndex;
+
+        this.tooltip = new TextTooltip("", SkinType.Arcade.SKIN);
+        this.tooltip.setInstant(true);
+        this.tooltip.getActor().setColor(Color.WHITE);
+        this.tooltip.getActor().setWrap(false);
+        this.addListener(this.tooltip);
+
+        this.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                parentInventory.setSelectedCell(cellIndex);
+            }
+        });
     }
 
     public void increaseAmount(int amount) {
@@ -35,13 +63,21 @@ public class InventoryCell extends ImageButton {
             this.item = item;
             this.amount = amount;
         }
+
+        String updatedTooltipText = (item.DISPLAY_NAME + "\n- " + item.DESCRIPTION + "\n(" + item.DAMAGE + " damage)");
+        this.tooltip.getActor().setText(updatedTooltipText);
+    }
+
+    public void setItem(ItemType item, int amount) {
+        this.item = item;
+        this.amount = amount;
     }
 
     private void updateAmountDisplay() {
         this.amountDisplay.setText("" + this.amount);
     }
 
-    private boolean hasItem() {
+    public boolean hasItem() {
         return this.item != null;
     }
 
@@ -51,7 +87,15 @@ public class InventoryCell extends ImageButton {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
+        if(this.isSelected()) {
+            this.getImage().setColor(Color.GREEN);
+        }
+
+        float alpha = this.isSelected() ? 1 : 0.6f;
+
+        super.draw(batch, alpha);
+
+        this.getImage().setColor(Color.WHITE);
 
         if(this.hasItem()) {
             Sprite sprite = this.getItem().UI_SPRITE;
@@ -59,7 +103,14 @@ public class InventoryCell extends ImageButton {
             sprite.setAlpha(this.alpha);
             sprite.setPosition(this.getX() + sprite.getWidth() / 5f, this.getY() + sprite.getHeight() / 5f);
 
+            if(this.isSelected()) {
+                sprite.setAlpha(1);
+                //sprite.setColor(Color.GREEN);
+            }
+
             sprite.draw(batch);
+
+            sprite.setColor(Color.WHITE);
         }
     }
 
@@ -67,11 +118,34 @@ public class InventoryCell extends ImageButton {
     public void act(float delta) {
         super.act(delta);
         this.amountDisplay.setVisible(this.hasItem());
+
         this.updateAmountDisplay();
+
+        //this.setDisabled(!selected);
+
+        if(this.isOver()) {
+            this.parentInventory.setMouseOverCell(true);
+        }
     }
 
     public void setAmountDisplay(Label amountDisplay) {
         this.amountDisplay = amountDisplay;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return this.selected;
+    }
+
+    public int getCellIndex() {
+        return this.cellIndex;
+    }
+
+    public int getAmount() {
+        return this.amount;
     }
 
 }

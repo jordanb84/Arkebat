@@ -7,7 +7,7 @@ import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.entity.mind.EntityMind;
 import com.ld45.game.entity.mind.impl.WanderAttackMind;
-import com.ld45.game.entity.projectile.impl.EntityFlame;
+import com.ld45.game.entity.projectile.impl.EntityFlameProjectile;
 import com.ld45.game.map.Map;
 
 public class EntityImp extends EnemyEntity {
@@ -54,7 +54,7 @@ public class EntityImp extends EnemyEntity {
     public void attackPlayer(EntityPlayer player) {
         Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
 
-        this.getParentMap().spawnEntity(new EntityFlame(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination));
+        this.getParentMap().spawnEntity(new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination));
     }
 
 }

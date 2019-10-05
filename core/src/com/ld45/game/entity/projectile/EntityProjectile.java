@@ -14,13 +14,12 @@ public abstract class EntityProjectile extends Entity {
     private Animation animation;
 
     private Vector2 destination;
-    private Rectangle destinationBody;
+    private Rectangle destinationBody = new Rectangle();
 
     public EntityProjectile(Vector2 position, Map parentMap, Vector2 destination, float speed) {
         super(position, parentMap, 0);
         this.animation = this.setupAnimation();
         this.destination = destination;
-        this.destinationBody = new Rectangle(destination.x, destination.y, this.animation.getCurrentWidth(), this.animation.getCurrentHeight());
         this.setSpeed(speed, speed);
     }
 
@@ -32,7 +31,7 @@ public abstract class EntityProjectile extends Entity {
     @Override
     public void update(OrthographicCamera camera) {
         super.update(camera);
-        this.destinationBody.setSize(this.animation.getCurrentWidth(), this.animation.getCurrentHeight());
+        this.destinationBody.set(this.destination.x, this.destination.y, this.animation.getCurrentWidth(), this.animation.getCurrentHeight());
         this.moveTowardDestination();
 
         this.setSprite(this.animation.getCurrentFrame().getSprite());
@@ -67,6 +66,10 @@ public abstract class EntityProjectile extends Entity {
     @Override
     public void updateBody() {
         this.getBody(false).set(this.getPosition().x, this.getPosition().y, this.animation.getCurrentWidth(), this.animation.getCurrentHeight());
+    }
+
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
     }
 
 }

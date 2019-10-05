@@ -5,9 +5,9 @@ import com.ld45.game.animation.Animation;
 import com.ld45.game.entity.projectile.EntityProjectile;
 import com.ld45.game.map.Map;
 
-public class EntityFlame extends EntityProjectile {
+public class EntityFlameProjectile extends EntityProjectile {
 
-    public EntityFlame(Vector2 position, Map parentMap, Vector2 destination) {
+    public EntityFlameProjectile(Vector2 position, Map parentMap, Vector2 destination) {
         super(position, parentMap, destination, 12);
     }
 

@@ -8,9 +8,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.ld45.game.entity.Direction;
 import com.ld45.game.entity.living.LivingEntity;
+import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.entity.mind.EntityMind;
 import com.ld45.game.entity.mind.EntityMindState;
-import com.ld45.game.entity.projectile.impl.EntityFlame;
+import com.ld45.game.entity.projectile.impl.EntityFoodProjectile;
+import com.ld45.game.inventory.Inventory;
+import com.ld45.game.inventory.InventoryCell;
+import com.ld45.game.item.ItemType;
 
 public class PlayerInputMindState extends EntityMindState {
 
@@ -48,9 +52,22 @@ public class PlayerInputMindState extends EntityMindState {
             Vector3 mouse = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(mouse);
 
-            Vector2 flameDestination = new Vector2(mouse.x, mouse.y);
+            EntityPlayer player = ((EntityPlayer) parentEntity);
 
-            //parentEntity.getParentMap().spawnEntity(new EntityFlame(new Vector2(parentEntity.getPosition().x, parentEntity.getPosition().y), parentEntity.getParentMap(), flameDestination));
+            Inventory inventory = player.getInventory();
+
+            ItemType selectedItem = inventory.getSelectedItem();
+
+            if(selectedItem != null && !inventory.isMouseOverCell()) {
+                Vector2 projectilePosition = new Vector2(player.getPosition().x, player.getPosition().y);
+                Vector2 foodDestination = new Vector2(mouse.x, mouse.y);
+
+                EntityFoodProjectile foodProjectile = new EntityFoodProjectile(selectedItem, projectilePosition, player.getParentMap(), foodDestination);
+
+                player.getParentMap().spawnEntity(foodProjectile);
+            }
+
+            //parentEntity.getParentMap().spawnEntity(new EntityFlameProjectile(new Vector2(parentEntity.getPosition().x, parentEntity.getPosition().y), parentEntity.getParentMap(), flameDestination));
         }
     }
 
