@@ -41,6 +41,8 @@ public class Map {
 
     private TextureRegion tileMapFbo;
 
+    private EntityPlayer player;
+
     public Map(MapDefinition mapDefinition, List<MapLayer> mapLayers) {
         this.mapDefinition = mapDefinition;
         this.mapLayers = mapLayers;
@@ -112,9 +114,10 @@ public class Map {
 
     private void spawnInitialEntities() {
         Vector2 startingPosition = new Vector2(128, 128);
-        EntityPlayer entityPlayer = new EntityPlayer(startingPosition, this);
+        EntityPlayer player = new EntityPlayer(startingPosition, this);
 
-        this.spawnEntity(entityPlayer);
+        this.spawnEntity(player);
+        this.setPlayer(player);
 
         this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
     }
@@ -241,6 +244,14 @@ public class Map {
 
     public int getLightRayCount() {
         return this.lightRayCount;
+    }
+
+    public EntityPlayer getEntityPlayer() {
+        return this.player;
+    }
+
+    public void setPlayer(EntityPlayer player) {
+        this.player = player;
     }
 
 }

@@ -62,7 +62,7 @@ public class MapEditor extends ApplicationAdapter {
         this.placingTileId = this.tileRegistry.getTileIdByName("base");
 
         this.primaryCamera = new OrthographicCamera();
-        this.primaryCamera.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        this.primaryCamera.setToOrtho(false, Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
 
         this.menuCamera = new OrthographicCamera();
         this.menuCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

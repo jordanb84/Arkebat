@@ -29,4 +29,9 @@ public abstract class AnimatedEntity extends Entity {
             this.directionalAnimation.update(this.getDirection());
         }
     }
+
+    public DirectionalAnimation getDirectionalAnimation() {
+        return this.directionalAnimation;
+    }
+
 }

@@ -45,7 +45,7 @@ public class WanderState extends EntityMindState {
         this.changeDirection();
     }
 
-    private void changeDirection() {
+    public void changeDirection() {
         Direction nextDirection = Direction.values()[this.directionChangeRandom.nextInt(Direction.values().length)];
 
         this.getParentEntity().setDirection(nextDirection);
