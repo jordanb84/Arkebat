@@ -9,6 +9,8 @@ public class MapEditorLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.backgroundFPS = 60;
 		config.foregroundFPS = 60;
+		config.width = 1680;
+		config.height = 945;
 		new LwjglApplication(new MapEditor(), config);
 	}
 }

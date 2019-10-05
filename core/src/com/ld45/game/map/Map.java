@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.ld45.game.entity.Entity;
+import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.tile.Tile;
 import com.ld45.game.tile.TileRegistry;
 
@@ -109,7 +110,10 @@ public class Map {
     }
 
     private void spawnInitialEntities() {
+        Vector2 startingPosition = new Vector2(128, 128);
+        EntityPlayer entityPlayer = new EntityPlayer(startingPosition, this);
 
+        this.spawnEntity(entityPlayer);
     }
 
     private void initiateTiles() {

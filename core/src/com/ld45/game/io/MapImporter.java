@@ -14,7 +14,7 @@ public class MapImporter {
     private static final MapImporter INSTANCE = new MapImporter();
 
     public Map getMapFromFile(FileHandle file, TileRegistry tileRegistry) {
-        MapDefinition mapDefinition = new MapDefinition(3, 10, 10, tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
+        MapDefinition mapDefinition = new MapDefinition(3, 40, 40, tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
 
         Map map = new Map(mapDefinition, this.getTilesFromFile(file, mapDefinition, tileRegistry));
 

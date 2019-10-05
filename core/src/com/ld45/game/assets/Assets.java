@@ -15,9 +15,20 @@ public class Assets {
     }
 
     public void load() {
-        this.loadTexture("tile/basicSheet.png");
+        this.loadTexture("tile/tileset.png");
 
         this.loadTexture("tile/overlay.png");
+
+        this.loadTexture("entity/bat_right_0.png");
+        this.loadTexture("entity/bat_right_1.png");
+        this.loadTexture("entity/bat_right_2.png");
+        this.loadTexture("entity/bat_right_3.png");
+        this.loadTexture("entity/bat_right_4.png");
+        this.loadTexture("entity/bat_left_0.png");
+        this.loadTexture("entity/bat_left_1.png");
+        this.loadTexture("entity/bat_left_2.png");
+        this.loadTexture("entity/bat_left_3.png");
+        this.loadTexture("entity/bat_left_4.png");
 
         this.assetManager.finishLoading();
     }

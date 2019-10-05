@@ -55,21 +55,21 @@ public class MapEditor extends ApplicationAdapter {
 
     @Override
     public void create() {
-        this.writeTilesetDataForSheet("tile/basicSheet.png", 16, 16);
+        this.writeTilesetDataForSheet("tile/tileset.png", 32, 32);
 
         this.tileRegistry = new TileRegistry("tile/tiledata.data");
 
         this.placingTileId = this.tileRegistry.getTileIdByName("base");
 
         this.primaryCamera = new OrthographicCamera();
-        this.primaryCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.primaryCamera.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
         this.menuCamera = new OrthographicCamera();
         this.menuCamera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         this.batch = new SpriteBatch();
 
-        MapDefinition mapDefinition = new MapDefinition(3, 10, 10, tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
+        MapDefinition mapDefinition = new MapDefinition(3, 40, 40, tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
         this.map = new Map(mapDefinition, this.tileRegistry.getTileIdByName("base"), this.tileRegistry);
 
         this.overlaySprite = Assets.getInstance().getSprite("tile/overlay.png");
@@ -158,6 +158,11 @@ public class MapEditor extends ApplicationAdapter {
 
                         System.out.println("Set tile " + this.placingTileId);
                     }
+
+                    if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
+                        this.placingTileId = tileId;
+                        System.out.println("Selected tile " + this.placingTileId);
+                    }
                 }
 
                 if(liveUpdate) {
@@ -193,6 +198,13 @@ public class MapEditor extends ApplicationAdapter {
         this.pollFileManagementInput();
 
         this.pollNavigationInput(camera);
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F)) {
+            this.map.getMapLayer(this.editingLayerIndex).fillWithType(this.placingTileId);
+            this.map.regenerateTilemapFrameBuffer();
+
+            System.out.println("Filled");
+        }
     }
 
     private void pollNavigationInput(OrthographicCamera camera) {
@@ -315,6 +327,10 @@ public class MapEditor extends ApplicationAdapter {
                     this.selectingTile = false;
                     this.placingTileId = tileId;
                 }
+
+                this.overlaySprite.setPosition(tileTypePosition.x, tileTypePosition.y);
+                this.overlaySprite.setSize(tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
+                this.overlaySprite.draw(batch);
             }
 
             column++;
