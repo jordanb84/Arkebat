@@ -64,6 +64,8 @@ public class Assets {
         this.loadTexture("entity/flame_5.png");
         this.loadTexture("entity/flame_6.png");
 
+        this.loadTexture("entity/food/cookie.png");
+
         this.assetManager.finishLoading();
     }
 

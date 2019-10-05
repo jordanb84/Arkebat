@@ -50,7 +50,7 @@ public class PlayerInputMindState extends EntityMindState {
 
             Vector2 flameDestination = new Vector2(mouse.x, mouse.y);
 
-            parentEntity.getParentMap().spawnEntity(new EntityFlame(new Vector2(parentEntity.getPosition().x, parentEntity.getPosition().y), parentEntity.getParentMap(), flameDestination));
+            //parentEntity.getParentMap().spawnEntity(new EntityFlame(new Vector2(parentEntity.getPosition().x, parentEntity.getPosition().y), parentEntity.getParentMap(), flameDestination));
         }
     }
 
