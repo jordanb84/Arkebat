@@ -1,5 +1,6 @@
 package com.ld45.game.entity.projectile;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -24,6 +25,11 @@ public abstract class EntityProjectile extends Entity {
     private float damage;
 
     private float homingThreshold = 8;
+
+    private float maxLifespan = 5;
+    private float lifeElapsed;
+
+    //kill on collision with walls too
 
     public EntityProjectile(Vector2 position, Map parentMap, Vector2 destination, float speed, boolean attacksPlayer, float damage) {
         super(position, parentMap, 0);
@@ -88,6 +94,12 @@ public abstract class EntityProjectile extends Entity {
                 }
             }
         }
+
+        this.lifeElapsed += 1 * Gdx.graphics.getDeltaTime();
+
+        if(this.lifeElapsed >= this.maxLifespan) {
+            this.explode();
+        }
     }
 
     @Override
@@ -130,6 +142,12 @@ public abstract class EntityProjectile extends Entity {
 
     public void setAnimation(Animation animation) {
         this.animation = animation;
+    }
+
+    @Override
+    public void onCollision(Direction direction) {
+        super.onCollision(direction);
+        this.explode();
     }
 
 }

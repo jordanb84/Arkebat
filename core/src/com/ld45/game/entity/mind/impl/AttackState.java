@@ -41,30 +41,36 @@ public class AttackState extends EntityMindState {
 
         float distanceX = Math.abs(parentEntity.getPosition().x - playerPosition.x);
 
-        if(parentEntity.getPosition().x < playerPosition.x && distanceX > this.distanceThreshold) {
-            movementDirection = Direction.RIGHT;
+        float distance = parentEntity.getPosition().dst(playerPosition);
+
+        if(distance >= 24) {
+            if (parentEntity.getPosition().x < playerPosition.x && distanceX > this.distanceThreshold) {
+                movementDirection = Direction.RIGHT;
+            }
+
+            if (parentEntity.getPosition().x > playerPosition.x && distanceX > distanceThreshold) {
+                movementDirection = Direction.LEFT;
+            }
+
+            float distanceY = Math.abs(parentEntity.getPosition().y - playerPosition.y);
+
+            if (parentEntity.getPosition().y < playerPosition.y && distanceY > this.distanceThreshold) {
+                movementDirection = Direction.UP;
+            }
+
+            if (parentEntity.getPosition().y > playerPosition.y && distanceY > this.distanceThreshold) {
+                movementDirection = Direction.DOWN;
+            }
+
+            if (movementDirection != null) {
+                parentEntity.move(movementDirection);
+            }
+
+
+            parentEntity.moveAlongCurrentDirection();
+            parentEntity.getDirectionalAnimation().update(parentEntity.getDirection());
+
         }
-
-        if(parentEntity.getPosition().x > playerPosition.x && distanceX > distanceThreshold) {
-            movementDirection = Direction.LEFT;
-        }
-
-        float distanceY = Math.abs(parentEntity.getPosition().y - playerPosition.y);
-
-        if(parentEntity.getPosition().y < playerPosition.y && distanceY > this.distanceThreshold) {
-            movementDirection = Direction.UP;
-        }
-
-        if(parentEntity.getPosition().y > playerPosition.y && distanceY > this.distanceThreshold) {
-            movementDirection = Direction.DOWN;
-        }
-
-        if(movementDirection != null) {
-            parentEntity.move(movementDirection);
-        }
-
-        parentEntity.moveAlongCurrentDirection();
-        parentEntity.getDirectionalAnimation().update(parentEntity.getDirection());
 
         this.elapsedSinceAttacked += 1 * Gdx.graphics.getDeltaTime();
 
