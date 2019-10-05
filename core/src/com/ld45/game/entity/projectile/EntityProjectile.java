@@ -9,6 +9,7 @@ import com.ld45.game.entity.Direction;
 import com.ld45.game.entity.Entity;
 import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.impl.BurstEntity;
+import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.map.Map;
 
 public abstract class EntityProjectile extends Entity {
@@ -21,6 +22,8 @@ public abstract class EntityProjectile extends Entity {
     private boolean attacksPlayer;
 
     private float damage;
+
+    private float homingThreshold = 8;
 
     public EntityProjectile(Vector2 position, Map parentMap, Vector2 destination, float speed, boolean attacksPlayer, float damage) {
         super(position, parentMap, 0);
@@ -50,11 +53,22 @@ public abstract class EntityProjectile extends Entity {
             this.explode();
         }
 
+        boolean homing = false;
+
         if(this.attacksPlayer) {
-            if(this.getBody().overlaps(this.getParentMap().getEntityPlayer().getBody())) {
+            EntityPlayer player = this.getParentMap().getEntityPlayer();
+
+            if(this.getBody().overlaps(player.getBody())) {
                 this.explode();
 
                 this.getParentMap().getEntityPlayer().damage(this.damage);
+
+                float distance = player.getPosition().dst(this.getPosition());
+
+                if (distance <= this.homingThreshold) {
+                    this.destination.set(player.getPosition());
+                    homing = true;
+                }
             }
         } else {
             for(EnemyEntity enemy : this.getParentMap().getEnemyCache()) {
@@ -62,6 +76,15 @@ public abstract class EntityProjectile extends Entity {
                     this.explode();
 
                     enemy.damage(this.damage);
+                }
+
+                if(!homing) {
+                    float distance = enemy.getPosition().dst(this.getPosition());
+
+                    if (distance <= this.homingThreshold) {
+                        this.destination.set(enemy.getPosition());
+                        homing = true;
+                    }
                 }
             }
         }
