@@ -4,6 +4,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.ld45.game.map.MapDefinition;
 import com.ld45.game.map.Map;
 import com.ld45.game.map.MapLayer;
+import com.ld45.game.state.StateManager;
 import com.ld45.game.tile.TileRegistry;
 
 import java.util.ArrayList;
@@ -13,10 +14,10 @@ public class MapImporter {
 
     private static final MapImporter INSTANCE = new MapImporter();
 
-    public Map getMapFromFile(FileHandle file, TileRegistry tileRegistry) {
+    public Map getMapFromFile(FileHandle file, TileRegistry tileRegistry, StateManager stateManager) {
         MapDefinition mapDefinition = new MapDefinition(3, 40, 40, tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
 
-        Map map = new Map(mapDefinition, this.getTilesFromFile(file, mapDefinition, tileRegistry));
+        Map map = new Map(mapDefinition, this.getTilesFromFile(file, mapDefinition, tileRegistry), stateManager);
 
         return map;
     }

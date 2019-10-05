@@ -16,8 +16,10 @@ import com.ld45.game.entity.droppeditem.EntityDroppedItem;
 import com.ld45.game.entity.enemy.impl.EntityImp;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.item.ItemType;
+import com.ld45.game.state.StateManager;
 import com.ld45.game.tile.Tile;
 import com.ld45.game.tile.TileRegistry;
+import com.ld45.game.ui.impl.HudContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,16 +48,22 @@ public class Map {
 
     private EntityPlayer player;
 
-    public Map(MapDefinition mapDefinition, List<MapLayer> mapLayers) {
+    private StateManager stateManager;
+
+    private HudContainer hudContainer;
+
+    public Map(MapDefinition mapDefinition, List<MapLayer> mapLayers, StateManager stateManager) {
         this.mapDefinition = mapDefinition;
         this.mapLayers = mapLayers;
+        this.stateManager = stateManager;
 
         this.setup();
     }
 
-    public Map(MapDefinition mapDefinition, int groundType, TileRegistry tileRegistry) {
+    public Map(MapDefinition mapDefinition, int groundType, TileRegistry tileRegistry, StateManager stateManager) {
         this.mapDefinition = mapDefinition;
         this.mapLayers = new ArrayList<MapLayer>();
+        this.stateManager = stateManager;
 
         for(int layersGenerated = 0; layersGenerated < this.mapDefinition.getMapLayers(); layersGenerated++) {
             if(layersGenerated == 0) {
@@ -81,6 +89,8 @@ public class Map {
         this.regenerateTilemapFrameBuffer();
 
         this.initiateTiles();
+
+        this.hudContainer = new HudContainer(this.stateManager, this.getEntityPlayer().getInventory());
     }
 
     public void regenerateTilemapFrameBuffer() {
@@ -152,6 +162,8 @@ public class Map {
             this.rayHandler.updateAndRender();
             batch.begin();
         }
+
+        this.hudContainer.render(batch, camera);
     }
 
     public void update(OrthographicCamera camera) {
@@ -179,6 +191,8 @@ public class Map {
         if(Gdx.input.isKeyJustPressed(Input.Keys.K)) {
             camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
+
+        this.hudContainer.update(camera);
     }
 
     public void spawnEntity(Entity entity) {

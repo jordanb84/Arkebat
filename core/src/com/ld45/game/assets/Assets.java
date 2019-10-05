@@ -3,6 +3,7 @@ package com.ld45.game.assets;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets {
 
@@ -66,6 +67,12 @@ public class Assets {
 
         this.loadTexture("entity/food/cookie.png");
 
+        this.loadTexture("ui/food/cookie.png");
+
+        this.loadSkin("ui/arcade/arcade-ui.json");
+        this.loadSkin("ui/clean-crispy/clean-crispy-ui.json");
+        this.loadSkin("ui/sgxui/sgx-ui.json");
+
         this.assetManager.finishLoading();
     }
 
@@ -79,6 +86,14 @@ public class Assets {
 
     public Sprite getSprite(String path) {
         return new Sprite(this.getTexture(path));
+    }
+
+    public void loadSkin(String path) {
+        this.assetManager.load(path, Skin.class);
+    }
+
+    public Skin getSkin(String path) {
+        return this.assetManager.get(path, Skin.class);
     }
 
     public static Assets getInstance() {

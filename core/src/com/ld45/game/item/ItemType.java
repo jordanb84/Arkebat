@@ -9,7 +9,10 @@ public enum ItemType {
 
     ItemType(String spriteName, String displayName, String description) {
         this.SPRITE = Assets.getInstance().getSprite("entity/food/" + spriteName);
+        this.UI_SPRITE = Assets.getInstance().getSprite("ui/food/" + spriteName);
     }
 
     public final Sprite SPRITE;
+    public final Sprite UI_SPRITE;
+
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.entity.Entity;
+import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.item.ItemType;
 import com.ld45.game.map.Map;
 
@@ -57,7 +58,10 @@ public class EntityDroppedItem extends Entity {
             }
         }
 
-        if(this.getBody().overlaps(this.getParentMap().getEntityPlayer().getBody())) {
+        EntityPlayer player = this.getParentMap().getEntityPlayer();
+
+        if(this.getBody().overlaps(player.getBody())) {
+            player.getInventory().addItem(this.itemType, 1);
             this.getParentMap().despawnEntity(this);
         }
     }

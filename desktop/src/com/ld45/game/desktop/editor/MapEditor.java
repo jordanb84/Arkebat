@@ -17,6 +17,7 @@ import com.ld45.game.io.MapImporter;
 import com.ld45.game.map.Map;
 import com.ld45.game.map.MapDefinition;
 import com.ld45.game.map.MapLayer;
+import com.ld45.game.state.StateManager;
 import com.ld45.game.tile.Tile;
 import com.ld45.game.tile.TileData;
 import com.ld45.game.tile.TileRegistry;
@@ -70,7 +71,7 @@ public class MapEditor extends ApplicationAdapter {
         this.batch = new SpriteBatch();
 
         MapDefinition mapDefinition = new MapDefinition(3, 40, 40, tileRegistry.getTileWidth(), tileRegistry.getTileHeight());
-        this.map = new Map(mapDefinition, this.tileRegistry.getTileIdByName("base"), this.tileRegistry);
+        this.map = new Map(mapDefinition, this.tileRegistry.getTileIdByName("base"), this.tileRegistry, new StateManager());
 
         this.overlaySprite = Assets.getInstance().getSprite("tile/overlay.png");
     }
@@ -254,7 +255,7 @@ public class MapEditor extends ApplicationAdapter {
             if (selectedOption == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
 
-                this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/" + selectedFile.getName()), this.tileRegistry);
+                this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/" + selectedFile.getName()), this.tileRegistry, new StateManager());
 
                 System.out.println("Replaced map");
             }
