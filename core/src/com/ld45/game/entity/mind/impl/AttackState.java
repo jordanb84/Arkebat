@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.entity.Direction;
+import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.living.LivingEntity;
 import com.ld45.game.entity.mind.EntityMind;
 import com.ld45.game.entity.mind.EntityMindState;
@@ -15,6 +16,13 @@ import java.util.Random;
 public class AttackState extends EntityMindState {
 
     private float distanceThreshold = 8;
+
+    private float baseAttackInterval = 1.8f;
+    private float attackInterval = baseAttackInterval;
+
+    private float elapsedSinceAttacked;
+
+    private Random attackIntervalRandom = new Random();
 
     public AttackState(EntityMind parentMind) {
         super(parentMind, "attack");
@@ -57,6 +65,20 @@ public class AttackState extends EntityMindState {
 
         parentEntity.moveAlongCurrentDirection();
         parentEntity.getDirectionalAnimation().update(parentEntity.getDirection());
+
+        this.elapsedSinceAttacked += 1 * Gdx.graphics.getDeltaTime();
+
+        if(this.elapsedSinceAttacked >= this.attackInterval) {
+            ((EnemyEntity) this.getParentEntity()).attackPlayer(this.getParentMap().getEntityPlayer());
+
+            this.attackInterval = this.baseAttackInterval * this.attackIntervalRandom.nextFloat() * 3;
+
+            if(this.attackInterval > this.baseAttackInterval) {
+                this.attackInterval = baseAttackInterval;
+            }
+
+            this.elapsedSinceAttacked = 0;
+        }
     }
 
     @Override

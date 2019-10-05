@@ -61,7 +61,6 @@ public class DirectionalAnimation {
     }
 
     public Sprite getActiveSprite(Direction direction) {
-        System.out.println("Getting animation for direction " + direction);
         return this.animations.get(direction).getCurrentFrame().getSprite();
     }
 

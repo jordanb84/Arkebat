@@ -2,6 +2,7 @@ package com.ld45.game.map;
 
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -113,7 +114,7 @@ public class Map {
     }
 
     private void spawnInitialEntities() {
-        Vector2 startingPosition = new Vector2(128, 128);
+        Vector2 startingPosition = new Vector2(160, 1088);
         EntityPlayer player = new EntityPlayer(startingPosition, this);
 
         this.spawnEntity(player);
@@ -165,6 +166,14 @@ public class Map {
         for(Entity entity : this.getEntities()) {
             entity.update(camera);
             this.applyEntityFriction(entity);
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            camera.setToOrtho(false, Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+            camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
     }
 
