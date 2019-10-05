@@ -30,6 +30,30 @@ public class Assets {
         this.loadTexture("entity/bat_left_3.png");
         this.loadTexture("entity/bat_left_4.png");
 
+        this.loadTexture("entity/imp_right_0.png");
+        this.loadTexture("entity/imp_right_1.png");
+        this.loadTexture("entity/imp_right_2.png");
+        this.loadTexture("entity/imp_right_3.png");
+        this.loadTexture("entity/imp_right_4.png");
+        this.loadTexture("entity/imp_right_5.png");
+        this.loadTexture("entity/imp_right_6.png");
+
+        this.loadTexture("entity/imp_left_0.png");
+        this.loadTexture("entity/imp_left_1.png");
+        this.loadTexture("entity/imp_left_2.png");
+        this.loadTexture("entity/imp_left_3.png");
+        this.loadTexture("entity/imp_left_4.png");
+        this.loadTexture("entity/imp_left_5.png");
+        this.loadTexture("entity/imp_left_6.png");
+
+        this.loadTexture("entity/flame_0.png");
+        this.loadTexture("entity/flame_1.png");
+        this.loadTexture("entity/flame_2.png");
+        this.loadTexture("entity/flame_3.png");
+        this.loadTexture("entity/flame_4.png");
+        this.loadTexture("entity/flame_5.png");
+        this.loadTexture("entity/flame_6.png");
+
         this.assetManager.finishLoading();
     }
 

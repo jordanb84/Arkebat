@@ -9,7 +9,7 @@ public class PlayerMind extends EntityMind {
 
     public PlayerMind(LivingEntity parentEntity) {
         super(parentEntity);
-        this.playerInputMindState = new PlayerInputMindState(this, "input");
+        this.playerInputMindState = new PlayerInputMindState(this);
         this.registerState(this.playerInputMindState);
         this.setState("input");
     }

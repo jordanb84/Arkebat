@@ -104,6 +104,10 @@ public abstract class Entity {
         this.move(direction, this.getAcceleration(), true);
     }
 
+    public void moveAlongCurrentDirection() {
+        this.move(this.getDirection());
+    }
+
     public boolean moveDirectly(Vector2 newPosition, boolean stopAtSolids) {
         if(stopAtSolids) {
             boolean canMoveToPosition = false;
@@ -209,6 +213,15 @@ public abstract class Entity {
 
     public Rectangle getBody() {
         this.updateBody();
+
+        return this.body;
+    }
+
+    public Rectangle getBody(boolean update) {
+        if(update) {
+            this.updateBody();
+        }
+
         return this.body;
     }
 
@@ -281,4 +294,13 @@ public abstract class Entity {
     public boolean hasLight() {
         return this.light != null;
     }
+
+    public double getRotationTowardPosition(Vector2 position) {
+        double angle = Math.atan2(position.y - this.getPosition().y, position.x - this.getPosition().x);
+
+        angle = angle * (180 / Math.PI);
+
+        return angle;
+    }
+
 }

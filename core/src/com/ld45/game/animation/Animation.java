@@ -27,6 +27,16 @@ public class Animation {
         this.getCurrentFrame().render(batch, position);
     }
 
+    public void render(SpriteBatch batch, Vector2 position, float alpha, float rotation) {
+        Sprite currentFrameSprite = this.getCurrentFrame().getSprite();
+
+        currentFrameSprite.setAlpha(alpha);
+        currentFrameSprite.setRotation(rotation);
+        this.getCurrentFrame().render(batch, position);
+        currentFrameSprite.setAlpha(1);
+        currentFrameSprite.setRotation(0);
+    }
+
     public void update() {
         this.elapsedSinceFrameChange += 1 * Gdx.graphics.getDeltaTime();
 
