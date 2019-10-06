@@ -19,7 +19,8 @@ public class EntityPlayer extends LivingEntity {
         this.setSpeed(9, 9);
         this.inventory = new Inventory(this);
         this.setHasShadow(true);
-        this.setHealth(300);
+        this.setMaxHealth(110);
+        this.setHealth(110);
     }
 
     @Override

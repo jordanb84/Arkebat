@@ -42,7 +42,8 @@ public abstract class Entity {
     private float elapsedSinceDamage;
     private float damageDuration = 0.7f;
 
-    private float health = 1;
+    private float maxHealth = 1;
+    private float health = maxHealth;
 
     public Entity(Vector2 position, Map parentMap, float weight) {
         this.position = position;
@@ -374,6 +375,18 @@ public abstract class Entity {
 
     public void setHealth(float health) {
         this.health = health;
+
+        if(this.health > this.getMaxHealth()) {
+            this.setHealth(this.getMaxHealth());
+        }
+    }
+
+    public float getMaxHealth() {
+        return this.maxHealth;
+    }
+
+    public void setMaxHealth(float maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
 }

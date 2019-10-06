@@ -33,6 +33,8 @@ public class Inventory {
 
     private EntityPlayer player;
 
+    private List<ItemType> collectedFoods = new ArrayList<ItemType>();
+
     public Inventory(EntityPlayer player) {
         this.generate();
 
@@ -104,6 +106,10 @@ public class Inventory {
             if(hasEmptyCell) {
                 firstEmptyCell.addItem(item, amount);
             }
+        }
+
+        if(!this.collectedFoods.contains(item)) {
+            this.collectedFoods.add(item);
         }
     }
 
@@ -264,6 +270,22 @@ public class Inventory {
 
     public int getColumns() {
         return this.columns;
+    }
+
+    public EntityPlayer getPlayer() {
+        return this.player;
+    }
+
+    public int getHungerRemaining() {
+        return this.hungerRemaining;
+    }
+
+    public int getHungerMax() {
+        return this.hungerMax;
+    }
+
+    public List<ItemType> getCollectedFoods() {
+        return this.collectedFoods;
     }
 
 }
