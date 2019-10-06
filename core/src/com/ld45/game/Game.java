@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ld45.game.state.StateManager;
+import com.ld45.game.state.impl.StateMap;
 
 public class Game extends ApplicationAdapter {
 
@@ -20,9 +21,13 @@ public class Game extends ApplicationAdapter {
 		this.batch = new SpriteBatch();
 
 		this.camera = new OrthographicCamera();
-		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera.setToOrtho(false, Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
+		//TODO use separate camera for menu
 
 		this.stateManager = new StateManager();
+
+		this.stateManager.registerState("map", new StateMap(this.stateManager));
+		this.stateManager.setActiveState("map");
 	}
 
 	@Override

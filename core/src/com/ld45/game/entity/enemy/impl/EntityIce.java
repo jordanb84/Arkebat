@@ -64,11 +64,17 @@ public class EntityIce extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        this.fireFlame(Color.CHARTREUSE, player, 2); //TODO maybe cyan or something
+        this.fireFlame(Color.CHARTREUSE, player); //TODO maybe cyan or something
     }
 
     @Override
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         super.render(batch, camera);
     }
+
+    @Override
+    public int getDamage() {
+        return 6;
+    }
+
 }

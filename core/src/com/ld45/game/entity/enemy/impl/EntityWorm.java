@@ -56,7 +56,7 @@ public class EntityWorm extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        this.fireFlame(Color.GREEN, player, 1);
+        this.fireFlame(Color.GREEN, player);
     }
 
     @Override
@@ -74,6 +74,11 @@ public class EntityWorm extends EnemyEntity {
         } else {
             this.getDirectionalAnimation().update(this.getDirection());
         }
+    }
+
+    @Override
+    public int getDamage() {
+        return 3;
     }
 
 }

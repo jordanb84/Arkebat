@@ -39,7 +39,7 @@ public class Inventory {
     private List<ItemType> collectedFoods = new ArrayList<ItemType>();
 
     private float dyingElapsed;
-    private float dyingInterval = 1.5f;
+    private float dyingInterval = 0.9f;
 
     public Inventory(EntityPlayer player) {
         this.generate();

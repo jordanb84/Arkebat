@@ -58,6 +58,10 @@ public class Map {
 
     private HudContainer hudContainer;
 
+    private boolean gameOver;
+    private float gameOverElapsed;
+    private float gameOverMax = 3f;
+
     public Map(MapDefinition mapDefinition, List<MapLayer> mapLayers, StateManager stateManager) {
         this.mapDefinition = mapDefinition;
         this.mapLayers = mapLayers;
@@ -174,7 +178,7 @@ public class Map {
         this.spawnEntity(new EntityDroppedItem(new Vector2(576, 800), this, ItemType.Eggs, 3));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 992), this, ItemType.Syrup, 6));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Pie, 6));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Cantaloupe, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Cantaloupe, 8));
     }
 
     private void initiateTiles() {
@@ -226,9 +230,22 @@ public class Map {
         this.entityDespawnQueue.clear();
 
         for(Entity entity : this.getEntities()) {
-            entity.update(camera);
-            this.applyEntityFriction(entity);
+            if(!(entity instanceof EntityPlayer)) {
+                entity.update(camera);
+                this.applyEntityFriction(entity);
+            }
         }
+
+        if(!this.gameOver) {
+            this.getEntityPlayer().update(camera);
+            this.applyEntityFriction(this.getEntityPlayer());
+        }/** else {
+            this.gameOverElapsed += 1 * Gdx.graphics.getDeltaTime();
+
+            if(this.gameOverElapsed >= this.gameOverMax) {
+                this.reset();
+            }
+        }**/
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
             camera.setToOrtho(false, Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
@@ -263,6 +280,10 @@ public class Map {
 
     public List<Entity> getEntities() {
         return this.entities;
+    }
+
+    public void die() {
+        this.gameOver = true;
     }
 
     public void setTile(int layerIndex, int tileIndex, int tileId, Vector2 position) {
@@ -341,6 +362,14 @@ public class Map {
 
     public List<EnemyEntity> getEnemyCache() {
         return this.enemyCache;
+    }
+
+    public void reset() {
+        this.stateManager.getActiveState().reset();
+    }
+
+    public boolean isGameOver() {
+        return this.gameOver;
     }
 
 }

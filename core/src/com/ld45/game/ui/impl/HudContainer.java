@@ -1,13 +1,19 @@
 package com.ld45.game.ui.impl;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.inventory.Inventory;
 import com.ld45.game.inventory.InventoryCell;
 import com.ld45.game.item.ItemType;
+import com.ld45.game.map.Map;
 import com.ld45.game.state.StateManager;
 import com.ld45.game.ui.SkinType;
 import com.ld45.game.ui.UiContainer;
@@ -17,9 +23,16 @@ public class HudContainer extends UiContainer {
 
     private Inventory inventory;
 
+    private Map map;
+
+    private Window gameOverWindow;
+
+    private boolean showedRestart;
+
     public HudContainer(StateManager stateManager, Inventory inventory) {
         super(stateManager, SkinType.Sgx.SKIN);
         this.inventory = inventory;
+        this.map = this.inventory.getPlayer().getParentMap();
 
         InfoWindow infoWindow = new InfoWindow(this.inventory);
         infoWindow.setPosition(0, Screen.SCREEN_HEIGHT / 2 - infoWindow.getHeight() / 2);
@@ -45,11 +58,42 @@ public class HudContainer extends UiContainer {
         }
 
         this.getPrimaryTable().padBottom(32);
+
+        Color transparentColor = new Color(Color.WHITE.r, Color.WHITE.g, Color.WHITE.b, 0.8f);
+
+        this.gameOverWindow = new Window("You died!", this.getDefaultSkin());
+        this.gameOverWindow.setSize(300, 300);
+
+        this.gameOverWindow.setColor(transparentColor);
+
+        TextButton restartButton = new TextButton("Restart", this.getDefaultSkin());
+        restartButton.setColor(transparentColor);
+
+        restartButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                map.reset();
+            }
+        });
+
+        this.gameOverWindow.add(restartButton).center();
+
+        this.gameOverWindow.setPosition(Screen.SCREEN_WIDTH / 2 - this.gameOverWindow.getWidth() / 2, Screen.SCREEN_HEIGHT / 2 - this.gameOverWindow.getHeight() / 2);
     }
 
     @Override
     public void setup() {
 
+    }
+
+    @Override
+    public void update(OrthographicCamera camera) {
+        super.update(camera);
+        if(this.map.isGameOver() && !this.showedRestart) {
+            this.getPrimaryTable().addActor(this.gameOverWindow);
+            this.showedRestart = true;
+        }
     }
 
 }
@@ -117,6 +161,10 @@ class InfoWindow extends Window {
         super.act(delta);
         int playerHealth = (int) this.player.getHealth();
         int playerMaxHealth = (int) this.player.getMaxHealth();
+
+        if(playerHealth < 0) {
+            playerHealth = 0;
+        }
 
         int hunger = this.inventory.getHungerRemaining();
         int hungerMax = this.inventory.getHungerMax();

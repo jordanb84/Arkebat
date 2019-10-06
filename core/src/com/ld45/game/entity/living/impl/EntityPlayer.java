@@ -19,8 +19,8 @@ public class EntityPlayer extends LivingEntity {
         this.setSpeed(9, 9);
         this.inventory = new Inventory(this);
         this.setHasShadow(true);
-        this.setMaxHealth(20);
-        this.setHealth(20);
+        this.setMaxHealth(30);
+        this.setHealth(30);
     }
 
     @Override
@@ -49,6 +49,12 @@ public class EntityPlayer extends LivingEntity {
     public void update(OrthographicCamera camera) {
         super.update(camera);
         this.inventory.update(camera);
+    }
+
+    @Override
+    public void onDeath() {
+        super.onDeath();
+        this.getParentMap().die();
     }
 
 }
