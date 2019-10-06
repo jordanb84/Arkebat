@@ -162,7 +162,7 @@ public class MapEditor extends ApplicationAdapter {
 
                     if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
                         this.placingTileId = tileId;
-                        System.out.println("Selected tile " + this.placingTileId);
+                        System.out.println("Selected tile " + this.placingTileId + " at pos " + tilePosition.x + "/" + tilePosition.y);
                     }
                 }
 

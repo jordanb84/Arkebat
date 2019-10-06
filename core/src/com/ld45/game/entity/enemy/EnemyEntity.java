@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.ld45.game.animation.DirectionalAnimation;
 import com.ld45.game.entity.living.LivingEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
@@ -58,29 +60,32 @@ public abstract class EnemyEntity extends LivingEntity {
     @Override
     public void update(OrthographicCamera camera) {
         this.updateBody();
+        boolean withinCamera = camera.frustum.pointInFrustum(this.getPosition().x, this.getPosition().y, 0);
 
-        this.applyVelocity(true);
+        if(withinCamera) {
+            this.applyVelocity(true);
 
-        if(this.hasLight()) {
-            this.getLight().setPosition(this.getPosition().x + this.getWidth() / 2, this.getPosition().y + this.getHeight() / 2);
-        }
-
-        this.getMind().update(camera);
-
-        if(this.hasPhysicsBody()) {
-            this.updatePhysicsBody();
-        }
-
-        if(this.isMoving()) {
-            if (this.attacking) {
-                this.attackAnimation.update(this.getDirection());
-            } else {
-                this.getDirectionalAnimation().update(this.getDirection());
+            if (this.hasLight()) {
+                this.getLight().setPosition(this.getPosition().x + this.getWidth() / 2, this.getPosition().y + this.getHeight() / 2);
             }
-        }
 
-        if(this.getHealth() <= 0) {
-            this.explode();
+            this.getMind().update(camera);
+
+            if (this.hasPhysicsBody()) {
+                this.updatePhysicsBody();
+            }
+
+            if (this.isMoving()) {
+                if (this.attacking) {
+                    this.attackAnimation.update(this.getDirection());
+                } else {
+                    this.getDirectionalAnimation().update(this.getDirection());
+                }
+            }
+
+            if (this.getHealth() <= 0) {
+                this.explode();
+            }
         }
     }
 

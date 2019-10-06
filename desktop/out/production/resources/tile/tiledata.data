@@ -265,7 +265,7 @@
             "sheetX": 0
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_33",
             "id": 33,
             "usesCustomClass": false,
@@ -393,7 +393,7 @@
             "sheetX": 0
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_49",
             "id": 49,
             "usesCustomClass": false,
@@ -1665,7 +1665,7 @@
             "sheetX": 480
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_208",
             "id": 208,
             "usesCustomClass": false,
@@ -1673,7 +1673,7 @@
             "sheetX": 0
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_209",
             "id": 209,
             "usesCustomClass": false,
@@ -1681,7 +1681,7 @@
             "sheetX": 32
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_210",
             "id": 210,
             "usesCustomClass": false,
@@ -1793,7 +1793,7 @@
             "sheetX": 480
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_224",
             "id": 224,
             "usesCustomClass": false,
@@ -1801,7 +1801,7 @@
             "sheetX": 0
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_225",
             "id": 225,
             "usesCustomClass": false,
@@ -1809,7 +1809,7 @@
             "sheetX": 32
         },
         {
-            "solid": false,
+            "solid": true,
             "name": "tile_226",
             "id": 226,
             "usesCustomClass": false,

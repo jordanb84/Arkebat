@@ -144,9 +144,18 @@ public class Map {
         this.spawnEntity(player);
         this.setPlayer(player);
 
-        this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 448, startingPosition.y - 320), this));
-        this.spawnEntity(new EntityWorm(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
-        this.spawnEntity(new EntityIce(new Vector2(startingPosition.x + 32, startingPosition.y + 64), this));
+        this.spawnEntity(new EntityWorm(new Vector2(224, 928), this));
+        this.spawnEntity(new EntityWorm(new Vector2(448, 1120), this));
+        this.spawnEntity(new EntityWorm(new Vector2(416, 1024), this));
+        this.spawnEntity(new EntityWorm(new Vector2(384, 1088), this));
+        this.spawnEntity(new EntityWorm(new Vector2(512, 768), this));
+        this.spawnEntity(new EntityWorm(new Vector2(896, 928), this));
+        this.spawnEntity(new EntityWorm(new Vector2(928, 768), this));
+
+        this.spawnEntity(new EntityImp(new Vector2(704, 800), this));
+        this.spawnEntity(new EntityImp(new Vector2(768, 928), this));
+        this.spawnEntity(new EntityImp(new Vector2(928, 864), this));
+        //this.spawnEntity(new EntityIce(new Vector2(startingPosition.x + 32, startingPosition.y + 64), this));
     }
 
     private void initiateTiles() {
