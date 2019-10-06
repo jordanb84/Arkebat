@@ -20,6 +20,7 @@ public class EntityImp extends EnemyEntity {
     public EntityImp(Vector2 position, Map parentMap) {
         super(position, parentMap, 0.5f, Color.RED, 1);
         this.setSpeed(4, 4);
+        this.setHealth(16);
     }
 
     @Override
@@ -57,9 +58,7 @@ public class EntityImp extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
-
-        this.getParentMap().spawnEntity(new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3));
+        this.fireFlame(Color.WHITE, player);
     }
 
     @Override

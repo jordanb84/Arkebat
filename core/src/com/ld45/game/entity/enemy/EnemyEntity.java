@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.DirectionalAnimation;
 import com.ld45.game.entity.living.LivingEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
+import com.ld45.game.entity.projectile.impl.EntityFlameProjectile;
 import com.ld45.game.map.Map;
 
 public abstract class EnemyEntity extends LivingEntity {
@@ -81,6 +82,16 @@ public abstract class EnemyEntity extends LivingEntity {
         if(this.getHealth() <= 0) {
             this.explode();
         }
+    }
+
+    public void fireFlame(Color tint, EntityPlayer player) {
+        Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
+
+        EntityFlameProjectile flame = new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3);
+
+        flame.setTint(tint);
+
+        this.getParentMap().spawnEntity(flame);
     }
 
     public boolean isAttacking() {

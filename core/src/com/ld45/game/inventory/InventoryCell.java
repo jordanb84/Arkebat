@@ -64,13 +64,21 @@ public class InventoryCell extends ImageButton {
             this.amount = amount;
         }
 
-        String updatedTooltipText = (item.DISPLAY_NAME + "\n- " + item.DESCRIPTION + "\n(" + item.DAMAGE + " damage)");
-        this.tooltip.getActor().setText(updatedTooltipText);
+        this.updateTooltip();
     }
 
     public void setItem(ItemType item, int amount) {
         this.item = item;
         this.amount = amount;
+
+        if(item != null) {
+            this.updateTooltip();;
+        }
+    }
+
+    public void updateTooltip() {
+        String updatedTooltipText = (item.DISPLAY_NAME + "\n- " + item.DESCRIPTION + "\n(" + item.DAMAGE + " damage)");
+        this.tooltip.getActor().setText(updatedTooltipText);
     }
 
     private void updateAmountDisplay() {

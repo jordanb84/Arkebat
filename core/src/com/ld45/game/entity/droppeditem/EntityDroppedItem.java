@@ -76,8 +76,7 @@ public class EntityDroppedItem extends Entity {
                 this.getParentMap().spawnEntity(burstEntity);
             }
 
-            //TODO spawn a bunch of burst entities here
-            //burst entity is just an entity with a rotation like +30 each one, then move toward rotation
+            player.getInventory().restoreHunger(this.itemType.HUNGER_RESTORATION);
         }
     }
 

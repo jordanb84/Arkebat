@@ -25,6 +25,14 @@ public class Inventory {
 
     private HashMap<Integer, Integer> selectionInputs = new HashMap<Integer, Integer>();
 
+    private int hungerMax = 50;
+    private int hungerRemaining = hungerMax;
+
+    private float hungerElapsed;
+    private float hungerInterval = 6.5f;
+
+    private EntityPlayer player;
+
     public Inventory(EntityPlayer player) {
         this.generate();
 
@@ -39,6 +47,8 @@ public class Inventory {
         this.selectionInputs.put(Input.Keys.NUM_7, 6);
         this.selectionInputs.put(Input.Keys.NUM_8, 7);
         this.selectionInputs.put(Input.Keys.NUM_9, 8);
+
+        this.player = player;
     }
 
     public void update(OrthographicCamera camera) {
@@ -53,6 +63,17 @@ public class Inventory {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.U)) {
             this.moveDown();
+        }
+
+        if(this.player.isMoving()) {
+            this.hungerElapsed += 1 * Gdx.graphics.getDeltaTime();
+
+            if (this.hungerElapsed >= this.hungerInterval) {
+                this.hungerRemaining--;
+                this.hungerElapsed = 0;
+            }
+
+            System.out.println(this.hungerRemaining + "/" + this.hungerMax + " hunger");
         }
     }
 
@@ -131,14 +152,6 @@ public class Inventory {
     }
 
     public void moveDown() {
-        /**
-         * Start at the last cell with an item in it
-         *
-         * Set its item to nothing
-         *
-         * Get slot at next index and set it to the original item
-         */
-
         if(this.getInventoryCells().get(0).hasItem()) {
             InventoryCell lastCell = this.getLastCellWithItem();
 
@@ -161,7 +174,9 @@ public class Inventory {
 
                     currentCell.setItem(null, 0);
 
-                    this.getInventoryCells().get(currentCellIndex + 1).setItem(originalItem, originalAmount);
+                    InventoryCell inventoryCell = this.getInventoryCells().get(currentCellIndex + 1);
+
+                    inventoryCell.setItem(originalItem, originalAmount);
 
                     currentCellIndex--;
                 }
@@ -239,6 +254,14 @@ public class Inventory {
 
     public void setMouseOverCell(boolean mouseOverCell) {
         this.mouseOverCell = mouseOverCell;
+    }
+
+    public void restoreHunger(int restoration) {
+        this.hungerRemaining += restoration;
+
+        if(this.hungerRemaining > this.hungerMax) {
+            this.hungerRemaining = this.hungerMax;
+        }
     }
 
 }

@@ -24,6 +24,7 @@ public class EntityWorm extends EnemyEntity {
         super(position, parentMap, 0.5f, Color.WHITE, 1);
         this.setSpeed(4, 4);
         this.dirt = Assets.getInstance().getSprite("entity/worm_dirt.png");
+        this.setHealth(10);
     }
 
     @Override
@@ -54,13 +55,7 @@ public class EntityWorm extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
-
-        EntityFlameProjectile flame = new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3);
-
-        flame.setTint(Color.GREEN);
-
-        this.getParentMap().spawnEntity(flame);
+        this.fireFlame(Color.GREEN, player);
     }
 
     @Override

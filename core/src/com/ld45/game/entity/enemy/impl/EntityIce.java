@@ -18,6 +18,7 @@ public class EntityIce extends EnemyEntity {
     public EntityIce(Vector2 position, Map parentMap) {
         super(position, parentMap, 0.5f, Color.ORANGE, 1); //orange or yellow
         this.setSpeed(4, 4);
+        this.setHealth(10);
     }
 
     @Override
@@ -62,13 +63,7 @@ public class EntityIce extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
-
-        EntityFlameProjectile flame = new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3);
-
-        flame.setTint(Color.CHARTREUSE); //TODO maybe cyan or something
-
-        this.getParentMap().spawnEntity(flame);
+        this.fireFlame(Color.CHARTREUSE, player); //TODO maybe cyan or something
     }
 
     @Override
