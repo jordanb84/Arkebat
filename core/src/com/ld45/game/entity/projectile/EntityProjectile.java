@@ -25,7 +25,7 @@ public abstract class EntityProjectile extends Entity {
 
     private float damage;
 
-    private float homingThreshold = 8;
+    private float homingThreshold = 10;
 
     private float maxLifespan = 5;
     private float lifeElapsed;

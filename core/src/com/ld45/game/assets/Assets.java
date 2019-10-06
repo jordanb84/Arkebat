@@ -73,6 +73,47 @@ public class Assets {
         this.loadTexture("entity/worm_attack_4.png");
         this.loadTexture("entity/worm_attack_5.png");
 
+        this.loadTexture("entity/ice_right_0.png");
+        this.loadTexture("entity/ice_right_1.png");
+        this.loadTexture("entity/ice_right_2.png");
+        this.loadTexture("entity/ice_right_3.png");
+        this.loadTexture("entity/ice_left_0.png");
+        this.loadTexture("entity/ice_left_1.png");
+        this.loadTexture("entity/ice_left_2.png");
+        this.loadTexture("entity/ice_left_3.png");
+
+        this.loadTexture("entity/ice_spin_right_0.png");
+        this.loadTexture("entity/ice_spin_right_1.png");
+        this.loadTexture("entity/ice_spin_right_2.png");
+        this.loadTexture("entity/ice_spin_right_3.png");
+        this.loadTexture("entity/ice_spin_right_4.png");
+        this.loadTexture("entity/ice_spin_right_5.png");
+        this.loadTexture("entity/ice_spin_left_0.png");
+        this.loadTexture("entity/ice_spin_left_1.png");
+        this.loadTexture("entity/ice_spin_left_2.png");
+        this.loadTexture("entity/ice_spin_left_3.png");
+        this.loadTexture("entity/ice_spin_left_4.png");
+        this.loadTexture("entity/ice_spin_left_5.png");
+
+        this.loadTexture("entity/ice_hop_right_0.png");
+        this.loadTexture("entity/ice_hop_right_1.png");
+        this.loadTexture("entity/ice_hop_right_2.png");
+        this.loadTexture("entity/ice_hop_right_3.png");
+        this.loadTexture("entity/ice_hop_right_4.png");
+        this.loadTexture("entity/ice_hop_right_5.png");
+        this.loadTexture("entity/ice_hop_right_6.png");
+        this.loadTexture("entity/ice_hop_right_7.png");
+        this.loadTexture("entity/ice_hop_right_8.png");
+        this.loadTexture("entity/ice_hop_left_0.png");
+        this.loadTexture("entity/ice_hop_left_1.png");
+        this.loadTexture("entity/ice_hop_left_2.png");
+        this.loadTexture("entity/ice_hop_left_3.png");
+        this.loadTexture("entity/ice_hop_left_4.png");
+        this.loadTexture("entity/ice_hop_left_5.png");
+        this.loadTexture("entity/ice_hop_left_6.png");
+        this.loadTexture("entity/ice_hop_left_7.png");
+        this.loadTexture("entity/ice_hop_left_8.png");
+
         this.loadTexture("entity/flame_0.png");
         this.loadTexture("entity/flame_1.png");
         this.loadTexture("entity/flame_2.png");

@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.ld45.game.entity.Entity;
 import com.ld45.game.entity.droppeditem.EntityDroppedItem;
 import com.ld45.game.entity.enemy.EnemyEntity;
+import com.ld45.game.entity.enemy.impl.EntityIce;
 import com.ld45.game.entity.enemy.impl.EntityImp;
 import com.ld45.game.entity.enemy.impl.EntityWorm;
 import com.ld45.game.entity.living.impl.EntityPlayer;
@@ -141,10 +142,9 @@ public class Map {
         this.spawnEntity(player);
         this.setPlayer(player);
 
-        //this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
-        //this.spawnEntity(new EntityWorm(new Vector2(startingPosition.x + 384, startingPosition.y - 320), this));
         this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 448, startingPosition.y - 320), this));
         this.spawnEntity(new EntityWorm(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
+        this.spawnEntity(new EntityIce(new Vector2(startingPosition.x + 32, startingPosition.y + 64), this));
     }
 
     private void initiateTiles() {
