@@ -59,7 +59,7 @@ public class EntityImp extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        this.fireFlame(Color.WHITE, player);
+        this.fireFlame(Color.WHITE, player, 1.5f);
     }
 
     @Override

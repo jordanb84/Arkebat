@@ -97,6 +97,7 @@ public abstract class Entity {
 
         if(this.getHealth() <= 0) {
             this.explode();
+            this.onDeath();
         }
     }
 
@@ -387,6 +388,10 @@ public abstract class Entity {
 
     public void setMaxHealth(float maxHealth) {
         this.maxHealth = maxHealth;
+    }
+
+    public void onDeath() {
+
     }
 
 }

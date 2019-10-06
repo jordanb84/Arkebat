@@ -64,7 +64,7 @@ public class EntityIce extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        this.fireFlame(Color.CHARTREUSE, player); //TODO maybe cyan or something
+        this.fireFlame(Color.CHARTREUSE, player, 2); //TODO maybe cyan or something
     }
 
     @Override

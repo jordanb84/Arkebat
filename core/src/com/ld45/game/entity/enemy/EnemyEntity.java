@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.DirectionalAnimation;
+import com.ld45.game.entity.impl.HealEntity;
 import com.ld45.game.entity.living.LivingEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.entity.projectile.impl.EntityFlameProjectile;
@@ -83,14 +84,15 @@ public abstract class EnemyEntity extends LivingEntity {
 
             if (this.getHealth() <= 0) {
                 this.explode();
+                this.onDeath();
             }
         }
     }
 
-    public void fireFlame(Color tint, EntityPlayer player) {
+    public void fireFlame(Color tint, EntityPlayer player, float damageMultiplier) {
         Vector2 destination = new Vector2(player.getPosition().x + player.getWidth() / 2, player.getPosition().y + player.getHeight() / 2);
 
-        EntityFlameProjectile flame = new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3);
+        EntityFlameProjectile flame = new EntityFlameProjectile(new Vector2(this.getPosition().x, this.getPosition().y), this.getParentMap(), destination, true, 3 * damageMultiplier);
 
         flame.setTint(tint);
 
@@ -103,6 +105,14 @@ public abstract class EnemyEntity extends LivingEntity {
 
     public DirectionalAnimation getAttackAnimation() {
         return this.attackAnimation;
+    }
+
+    @Override
+    public void onDeath() {
+        super.onDeath();
+        HealEntity healEntity = new HealEntity(new Vector2(this.getPosition()), this.getParentMap());
+
+        this.getParentMap().spawnEntity(healEntity);
     }
 
 }

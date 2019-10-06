@@ -2,6 +2,7 @@ package com.ld45.game.entity.droppeditem;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.entity.Entity;
@@ -23,6 +24,8 @@ public class EntityDroppedItem extends Entity {
     private float minScale = 0.9f;
     private float maxScale = 1.1f;
 
+    private float scaleMultiplier = 1;
+
     private boolean scalingUp = true;
 
     private int amount;
@@ -34,10 +37,15 @@ public class EntityDroppedItem extends Entity {
         this.amount = amount;
     }
 
+    public EntityDroppedItem(Vector2 position, Map parentMap, Sprite sprite) {
+        super(position, parentMap, 0);
+        this.setSprite(sprite);
+    }
+
     @Override
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         this.getSprite().setRotation(this.rotation);
-        this.getSprite().setScale(this.scale);
+        this.getSprite().setScale(this.scale * this.scaleMultiplier);
         super.render(batch, camera);
         this.getSprite().setRotation(0);
         this.getSprite().setScale(1);
@@ -46,6 +54,16 @@ public class EntityDroppedItem extends Entity {
     @Override
     public void update(OrthographicCamera camera) {
         super.update(camera);
+        this.spin();
+
+        EntityPlayer player = this.getParentMap().getEntityPlayer();
+
+        if(this.getBody().overlaps(player.getBody())) {
+            this.pickup(player);
+        }
+    }
+
+    public void spin() {
         this.rotation += this.rotationRate * Gdx.graphics.getDeltaTime();
 
         if(this.scalingUp) {
@@ -61,23 +79,25 @@ public class EntityDroppedItem extends Entity {
                 this.scalingUp = true;
             }
         }
+    }
 
-        EntityPlayer player = this.getParentMap().getEntityPlayer();
+    public void pickup(EntityPlayer player) {
+        player.getInventory().addItem(this.itemType, this.amount);
+        this.getParentMap().despawnEntity(this);
 
-        if(this.getBody().overlaps(player.getBody())) {
-            player.getInventory().addItem(this.itemType, this.amount);
-            this.getParentMap().despawnEntity(this);
+        int totalParticles = 10;
 
-            int totalParticles = 10;
+        for(int particle = 0; particle < totalParticles; particle++) {
+            BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 1f, 0.8f, 0.8f, this.itemType.SPRITE);
 
-            for(int particle = 0; particle < totalParticles; particle++) {
-                BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 1f, 0.8f, 0.8f, this.itemType.SPRITE);
-
-                this.getParentMap().spawnEntity(burstEntity);
-            }
-
-            player.getInventory().restoreHunger(this.itemType.HUNGER_RESTORATION);
+            this.getParentMap().spawnEntity(burstEntity);
         }
+
+        player.getInventory().restoreHunger(this.itemType.HUNGER_RESTORATION);
+    }
+
+    public void setScaleMultiplier(float scaleMultiplier) {
+        this.scaleMultiplier = scaleMultiplier;
     }
 
 }

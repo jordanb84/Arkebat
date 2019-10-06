@@ -56,7 +56,7 @@ public class EntityWorm extends EnemyEntity {
 
     @Override
     public void attackPlayer(EntityPlayer player) {
-        this.fireFlame(Color.GREEN, player);
+        this.fireFlame(Color.GREEN, player, 1);
     }
 
     @Override
