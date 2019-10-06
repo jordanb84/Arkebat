@@ -7,9 +7,9 @@ import com.ld45.game.entity.mind.EntityMind;
 
 public class AttackNearbyMind extends EntityMind {
 
-    public AttackNearbyMind(LivingEntity parentEntity) {
+    public AttackNearbyMind(LivingEntity parentEntity, float attackInterval) {
         super(parentEntity);
-        AttackState attackState = new AttackState(this, false);
+        AttackState attackState = new AttackState(this, false, attackInterval);
         this.registerState(attackState);
         this.setState("attack");
     }

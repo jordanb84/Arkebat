@@ -18,12 +18,13 @@ public class EntityIce extends EnemyEntity {
     public EntityIce(Vector2 position, Map parentMap) {
         super(position, parentMap, 0.5f, Color.ORANGE, 1); //orange or yellow
         this.setSpeed(4, 4);
+        this.setMaxHealth(90);
         this.setHealth(90);
     }
 
     @Override
     public EntityMind setupMind() {
-        return new WanderAttackMind(this);
+        return new WanderAttackMind(this, 1.5f);
     }
 
     @Override

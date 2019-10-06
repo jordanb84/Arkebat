@@ -20,12 +20,13 @@ public class EntityImp extends EnemyEntity {
     public EntityImp(Vector2 position, Map parentMap) {
         super(position, parentMap, 0.5f, Color.RED, 1);
         this.setSpeed(4, 4);
+        this.setMaxHealth(16);
         this.setHealth(16);
     }
 
     @Override
     public EntityMind setupMind() {
-        return new WanderAttackMind(this);
+        return new WanderAttackMind(this, 1.5f);
     }
 
     @Override

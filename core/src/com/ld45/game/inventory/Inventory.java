@@ -11,6 +11,7 @@ import com.ld45.game.ui.SkinType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class Inventory {
 
@@ -29,11 +30,16 @@ public class Inventory {
     private int hungerRemaining = hungerMax;
 
     private float hungerElapsed;
-    private float hungerInterval = 6.5f;
+    private float hungerInterval = 1.5f;
+
+    private Random hungerRandom = new Random();
 
     private EntityPlayer player;
 
     private List<ItemType> collectedFoods = new ArrayList<ItemType>();
+
+    private float dyingElapsed;
+    private float dyingInterval = 1.5f;
 
     public Inventory(EntityPlayer player) {
         this.generate();
@@ -69,11 +75,20 @@ public class Inventory {
             this.hungerElapsed += 1 * Gdx.graphics.getDeltaTime();
 
             if (this.hungerElapsed >= this.hungerInterval) {
-                this.hungerRemaining--;
+                this.hungerRemaining -= this.hungerRandom.nextInt(3);
                 this.hungerElapsed = 0;
             }
+        }
 
-            System.out.println(this.hungerRemaining + "/" + this.hungerMax + " hunger");
+        if(this.hungerRemaining <= 0) {
+            this.hungerRemaining = 0;
+
+            this.dyingElapsed += 1 * Gdx.graphics.getDeltaTime();
+
+            if(this.dyingElapsed >= this.dyingInterval) {
+                this.player.setHealth(this.player.getHealth() - 1);
+                this.dyingElapsed = 0;
+            }
         }
     }
 

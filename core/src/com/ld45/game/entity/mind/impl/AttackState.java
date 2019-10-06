@@ -17,7 +17,7 @@ public class AttackState extends EntityMindState {
 
     private float distanceThreshold = 8;
 
-    private float baseAttackInterval = 1.8f;
+    private float baseAttackInterval;
     private float attackInterval = baseAttackInterval;
 
     private float elapsedSinceAttacked;
@@ -28,9 +28,10 @@ public class AttackState extends EntityMindState {
 
     private float attackRadius = 160;
 
-    public AttackState(EntityMind parentMind, boolean followTarget) {
+    public AttackState(EntityMind parentMind, boolean followTarget, float attackInterval) {
         super(parentMind, "attack");
         this.followTarget = followTarget;
+        this.baseAttackInterval = attackInterval;
     }
 
     @Override

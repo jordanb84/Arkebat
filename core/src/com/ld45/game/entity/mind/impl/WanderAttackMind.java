@@ -18,12 +18,12 @@ public class WanderAttackMind extends EntityMind {
     private float elapsedSinceAttack;
     private float minAttackInterval = 1f;
 
-    public WanderAttackMind(LivingEntity parentEntity) {
+    public WanderAttackMind(LivingEntity parentEntity, float attackInterval) {
         super(parentEntity);
         this.wanderState = new WanderState(this);
         this.registerState(this.wanderState);
 
-        AttackState attackState = new AttackState(this, true);
+        AttackState attackState = new AttackState(this, true, attackInterval);
         this.registerState(attackState);
 
         this.setState("wander");

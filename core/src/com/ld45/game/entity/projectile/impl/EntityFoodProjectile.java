@@ -15,7 +15,7 @@ public class EntityFoodProjectile extends EntityProjectile {
 
         this.setAnimation(animation);
 
-        this.setMaxLifespan(0.5f);
+        this.setMaxLifespan(0.6f);
     }
 
     @Override

@@ -24,12 +24,13 @@ public class EntityWorm extends EnemyEntity {
         super(position, parentMap, 0.5f, Color.WHITE, 1);
         this.setSpeed(4, 4);
         this.dirt = Assets.getInstance().getSprite("entity/worm_dirt.png");
+        this.setMaxHealth(10);
         this.setHealth(10);
     }
 
     @Override
     public EntityMind setupMind() {
-        return new AttackNearbyMind(this);
+        return new AttackNearbyMind(this, 1.3f);
     }
 
     @Override
