@@ -40,7 +40,7 @@ public abstract class Entity {
 
     private boolean damaged;
     private float elapsedSinceDamage;
-    private float damageDuration = 1f;
+    private float damageDuration = 0.7f;
 
     private float health = 1;
 

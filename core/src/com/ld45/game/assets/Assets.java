@@ -124,9 +124,13 @@ public class Assets {
 
         this.loadTexture("entity/food/cookie.png");
         this.loadTexture("entity/food/bacon.png");
+        this.loadTexture("entity/food/eggs.png");
+        this.loadTexture("entity/food/pig.png");
 
         this.loadTexture("ui/food/cookie.png");
         this.loadTexture("ui/food/bacon.png");
+        this.loadTexture("ui/food/eggs.png");
+        this.loadTexture("ui/food/pig.png");
 
         this.loadSkin("ui/arcade/arcade-ui.json");
         this.loadSkin("ui/clean-crispy/clean-crispy-ui.json");

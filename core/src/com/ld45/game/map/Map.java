@@ -137,7 +137,9 @@ public class Map {
 
         this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 32), this, ItemType.Cookie, 3));
         this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 64), this, ItemType.Bacon, 5));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 128), this, ItemType.Bacon, 1));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 96), this, ItemType.Bacon, 1));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 32, startingPosition.y + 96), this, ItemType.Eggs, 5));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 96, startingPosition.y + 96), this, ItemType.Pig, 6));
 
         this.spawnEntity(player);
         this.setPlayer(player);

@@ -5,7 +5,9 @@ import com.ld45.game.assets.Assets;
 
 public enum ItemType {
     Cookie("cookie.png", "Cookie", "Lots of crumbs!", 3, 3),
-    Bacon("bacon.png", "Bacon", "Very tasty!", 5, 5)
+    Bacon("bacon.png", "Bacon", "Very Greasy!", 5, 5),
+    Eggs("eggs.png", "Eggs", "Non rubbery!", 6, 6),
+    Pig("pig.png", "Pig", "... *Oink*", 11, 11)
     ;
 
     ItemType(String spriteName, String displayName, String description, int damage, int hungerRestoration) {
