@@ -99,7 +99,7 @@ public class InventoryCell extends ImageButton {
             this.getImage().setColor(Color.GREEN);
         }
 
-        float alpha = this.isSelected() ? 1 : 0.6f;
+        float alpha = this.isSelected() ? 1 : 0.5f;
 
         super.draw(batch, alpha);
 

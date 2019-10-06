@@ -36,8 +36,6 @@ public class Inventory {
     public Inventory(EntityPlayer player) {
         this.generate();
 
-        this.addItem(ItemType.Cookie, 5);
-
         this.selectionInputs.put(Input.Keys.NUM_1, 0);
         this.selectionInputs.put(Input.Keys.NUM_2, 1);
         this.selectionInputs.put(Input.Keys.NUM_3, 2);

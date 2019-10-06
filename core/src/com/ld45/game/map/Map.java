@@ -135,16 +135,16 @@ public class Map {
         Vector2 startingPosition = new Vector2(160, 1088);
         EntityPlayer player = new EntityPlayer(startingPosition, this);
 
-        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 32), this, ItemType.Cookie, 3));
+        /**this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 32), this, ItemType.Cookie, 3));
         this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 64), this, ItemType.Bacon, 5));
         this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 64, startingPosition.y + 96), this, ItemType.Bacon, 1));
         this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 32, startingPosition.y + 96), this, ItemType.Eggs, 5));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 96, startingPosition.y + 96), this, ItemType.Pig, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(startingPosition.x + 96, startingPosition.y + 96), this, ItemType.Pig, 6));**/
 
         this.spawnEntity(player);
         this.setPlayer(player);
 
-        this.spawnEntity(new EntityWorm(new Vector2(224, 928), this));
+        this.spawnEntity(new EntityWorm(new Vector2(224, 944), this));
         this.spawnEntity(new EntityWorm(new Vector2(448, 1120), this));
         this.spawnEntity(new EntityWorm(new Vector2(416, 1024), this));
         this.spawnEntity(new EntityWorm(new Vector2(384, 1088), this));
@@ -155,7 +155,26 @@ public class Map {
         this.spawnEntity(new EntityImp(new Vector2(704, 800), this));
         this.spawnEntity(new EntityImp(new Vector2(768, 928), this));
         this.spawnEntity(new EntityImp(new Vector2(928, 864), this));
+
+        this.spawnEntity(new EntityIce(new Vector2(1184, 832), this));
+        this.spawnEntity(new EntityIce(new Vector2(1120, 864), this));
         //this.spawnEntity(new EntityIce(new Vector2(startingPosition.x + 32, startingPosition.y + 64), this));
+
+        this.spawnEntity(new EntityDroppedItem(new Vector2(96, 992), this, ItemType.Cookie, 5));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(448, 1024), this, ItemType.Cookie, 4));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(384, 1152), this, ItemType.Bacon, 4));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(416, 1168), this, ItemType.Eggs, 3));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(736, 736), this, ItemType.Pretzel, 5));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(672, 736), this, ItemType.Jam, 5));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(928, 1024), this, ItemType.Beer, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(992, 736), this, ItemType.Pig, 1));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(544, 736), this, ItemType.Fish, 1));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(768, 960), this, ItemType.Fish, 3));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(960, 960), this, ItemType.Apple_Worm, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(576, 800), this, ItemType.Eggs, 3));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 992), this, ItemType.Syrup, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Pie, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Cantaloupe, 6));
     }
 
     private void initiateTiles() {

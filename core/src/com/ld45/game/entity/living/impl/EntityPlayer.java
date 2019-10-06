@@ -16,7 +16,7 @@ public class EntityPlayer extends LivingEntity {
 
     public EntityPlayer(Vector2 position, Map parentMap) {
         super(position, parentMap, 0.5f);
-        this.setSpeed(8, 8);
+        this.setSpeed(9, 9);
         this.inventory = new Inventory(this);
         this.setHasShadow(true);
         this.setHealth(300);

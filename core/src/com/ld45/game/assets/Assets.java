@@ -126,11 +126,27 @@ public class Assets {
         this.loadTexture("entity/food/bacon.png");
         this.loadTexture("entity/food/eggs.png");
         this.loadTexture("entity/food/pig.png");
+        this.loadTexture("entity/food/beer.png");
+        this.loadTexture("entity/food/jam.png");
+        this.loadTexture("entity/food/pretzel.png");
+        this.loadTexture("entity/food/apple_worm.png");
+        this.loadTexture("entity/food/cantaloupe.png");
+        this.loadTexture("entity/food/pie.png");
+        this.loadTexture("entity/food/fish.png");
+        this.loadTexture("entity/food/syrup.png");
 
         this.loadTexture("ui/food/cookie.png");
         this.loadTexture("ui/food/bacon.png");
         this.loadTexture("ui/food/eggs.png");
         this.loadTexture("ui/food/pig.png");
+        this.loadTexture("ui/food/beer.png");
+        this.loadTexture("ui/food/jam.png");
+        this.loadTexture("ui/food/pretzel.png");
+        this.loadTexture("ui/food/apple_worm.png");
+        this.loadTexture("ui/food/cantaloupe.png");
+        this.loadTexture("ui/food/pie.png");
+        this.loadTexture("ui/food/fish.png");
+        this.loadTexture("ui/food/syrup.png");
 
         this.loadSkin("ui/arcade/arcade-ui.json");
         this.loadSkin("ui/clean-crispy/clean-crispy-ui.json");

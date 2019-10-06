@@ -18,7 +18,7 @@ public class EntityIce extends EnemyEntity {
     public EntityIce(Vector2 position, Map parentMap) {
         super(position, parentMap, 0.5f, Color.ORANGE, 1); //orange or yellow
         this.setSpeed(4, 4);
-        this.setHealth(10);
+        this.setHealth(90);
     }
 
     @Override
