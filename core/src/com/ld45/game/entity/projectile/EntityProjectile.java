@@ -1,6 +1,7 @@
 package com.ld45.game.entity.projectile;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -29,7 +30,8 @@ public abstract class EntityProjectile extends Entity {
     private float maxLifespan = 5;
     private float lifeElapsed;
 
-    //kill on collision with walls too
+    private Color tint;
+    private boolean hasTint;
 
     public EntityProjectile(Vector2 position, Map parentMap, Vector2 destination, float speed, boolean attacksPlayer, float damage) {
         super(position, parentMap, 0);
@@ -42,7 +44,13 @@ public abstract class EntityProjectile extends Entity {
 
     @Override
     public void render(SpriteBatch batch, OrthographicCamera camera) {
+        if(this.hasTint) {
+            this.animation.getCurrentFrame().getSprite().setColor(this.tint);
+        }
+
         this.animation.render(batch, this.getPosition(), 1, (float) this.getRotationTowardPosition(this.destination));
+
+        this.animation.getCurrentFrame().getSprite().setColor(Color.WHITE);
     }
 
     @Override
@@ -111,6 +119,10 @@ public abstract class EntityProjectile extends Entity {
         for(int particle = 0; particle < totalParticles; particle++) {
             BurstEntity burstEntity = new BurstEntity(new Vector2(this.getPosition()), this.getParentMap(), particle, totalParticles, 2f, 1.2f, 1.2f, this.getSprite());
 
+            if(this.hasTint) {
+                burstEntity.setTint(this.tint);
+            }
+
             this.getParentMap().spawnEntity(burstEntity);
         }
     }
@@ -148,6 +160,15 @@ public abstract class EntityProjectile extends Entity {
     public void onCollision(Direction direction) {
         super.onCollision(direction);
         this.explode();
+    }
+
+    public void setTint(Color tint) {
+        this.tint = tint;
+        this.hasTint = true;
+    }
+
+    public void setMaxLifespan(float maxLifespan) {
+        this.maxLifespan = maxLifespan;
     }
 
 }

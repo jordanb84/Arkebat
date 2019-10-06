@@ -14,6 +14,8 @@ public class EntityFoodProjectile extends EntityProjectile {
         animation.addFrame(item.SPRITE_PATH);
 
         this.setAnimation(animation);
+
+        this.setMaxLifespan(0.5f);
     }
 
     @Override

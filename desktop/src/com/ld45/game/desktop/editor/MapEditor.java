@@ -94,7 +94,7 @@ public class MapEditor extends ApplicationAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        this.map.render(this.batch, this.primaryCamera);
+        this.map.render(this.batch, this.primaryCamera, this.playtesting);
 
         if(this.overlapping) {
             this.overlaySprite.setSize(this.tileRegistry.getTileWidth(), this.tileRegistry.getTileHeight());

@@ -24,8 +24,13 @@ public class AttackState extends EntityMindState {
 
     private Random attackIntervalRandom = new Random();
 
-    public AttackState(EntityMind parentMind) {
+    private boolean followTarget;
+
+    private float attackRadius = 160;
+
+    public AttackState(EntityMind parentMind, boolean followTarget) {
         super(parentMind, "attack");
+        this.followTarget = followTarget;
     }
 
     @Override
@@ -37,53 +42,60 @@ public class AttackState extends EntityMindState {
     public void update(OrthographicCamera camera, LivingEntity parentEntity) {
         Vector2 playerPosition = this.getParentMap().getEntityPlayer().getPosition();
 
-        Direction movementDirection = null;
-
         float distanceX = Math.abs(parentEntity.getPosition().x - playerPosition.x);
 
         float distance = parentEntity.getPosition().dst(playerPosition);
 
-        if(distance >= 24) {
-            if (parentEntity.getPosition().x < playerPosition.x && distanceX > this.distanceThreshold) {
-                movementDirection = Direction.RIGHT;
+        if(this.followTarget) {
+            Direction movementDirection = null;
+
+            if (distance >= 24) {
+                if (parentEntity.getPosition().x < playerPosition.x && distanceX > this.distanceThreshold) {
+                    movementDirection = Direction.RIGHT;
+                }
+
+                if (parentEntity.getPosition().x > playerPosition.x && distanceX > distanceThreshold) {
+                    movementDirection = Direction.LEFT;
+                }
+
+                float distanceY = Math.abs(parentEntity.getPosition().y - playerPosition.y);
+
+                if (parentEntity.getPosition().y < playerPosition.y && distanceY > this.distanceThreshold) {
+                    movementDirection = Direction.UP;
+                }
+
+                if (parentEntity.getPosition().y > playerPosition.y && distanceY > this.distanceThreshold) {
+                    movementDirection = Direction.DOWN;
+                }
+
+                if (movementDirection != null) {
+                    parentEntity.move(movementDirection);
+                }
+
+
+                parentEntity.moveAlongCurrentDirection();
+                parentEntity.getDirectionalAnimation().update(parentEntity.getDirection());
+
             }
-
-            if (parentEntity.getPosition().x > playerPosition.x && distanceX > distanceThreshold) {
-                movementDirection = Direction.LEFT;
-            }
-
-            float distanceY = Math.abs(parentEntity.getPosition().y - playerPosition.y);
-
-            if (parentEntity.getPosition().y < playerPosition.y && distanceY > this.distanceThreshold) {
-                movementDirection = Direction.UP;
-            }
-
-            if (parentEntity.getPosition().y > playerPosition.y && distanceY > this.distanceThreshold) {
-                movementDirection = Direction.DOWN;
-            }
-
-            if (movementDirection != null) {
-                parentEntity.move(movementDirection);
-            }
-
-
-            parentEntity.moveAlongCurrentDirection();
-            parentEntity.getDirectionalAnimation().update(parentEntity.getDirection());
 
         }
 
+        ((EnemyEntity) parentEntity).setAttacking(distance < this.attackRadius);
+
         this.elapsedSinceAttacked += 1 * Gdx.graphics.getDeltaTime();
 
-        if(this.elapsedSinceAttacked >= this.attackInterval) {
-            ((EnemyEntity) this.getParentEntity()).attackPlayer(this.getParentMap().getEntityPlayer());
+        if(distance < attackRadius) {
+            if (this.elapsedSinceAttacked >= this.attackInterval) {
+                ((EnemyEntity) this.getParentEntity()).attackPlayer(this.getParentMap().getEntityPlayer());
 
-            this.attackInterval = this.baseAttackInterval * this.attackIntervalRandom.nextFloat() * 3;
+                this.attackInterval = this.baseAttackInterval * this.attackIntervalRandom.nextFloat() * 3;
 
-            if(this.attackInterval > this.baseAttackInterval) {
-                this.attackInterval = baseAttackInterval;
+                if (this.attackInterval > this.baseAttackInterval) {
+                    this.attackInterval = baseAttackInterval;
+                }
+
+                this.elapsedSinceAttacked = 0;
             }
-
-            this.elapsedSinceAttacked = 0;
         }
     }
 

@@ -15,6 +15,7 @@ import com.ld45.game.entity.Entity;
 import com.ld45.game.entity.droppeditem.EntityDroppedItem;
 import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.enemy.impl.EntityImp;
+import com.ld45.game.entity.enemy.impl.EntityWorm;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.item.ItemType;
 import com.ld45.game.state.StateManager;
@@ -140,7 +141,10 @@ public class Map {
         this.spawnEntity(player);
         this.setPlayer(player);
 
-        this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
+        //this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
+        //this.spawnEntity(new EntityWorm(new Vector2(startingPosition.x + 384, startingPosition.y - 320), this));
+        this.spawnEntity(new EntityImp(new Vector2(startingPosition.x + 448, startingPosition.y - 320), this));
+        this.spawnEntity(new EntityWorm(new Vector2(startingPosition.x + 32, startingPosition.y + 32), this));
     }
 
     private void initiateTiles() {
@@ -155,7 +159,7 @@ public class Map {
         this.debugRenderer = new Box2DDebugRenderer();
     }
 
-    public void render(SpriteBatch batch, OrthographicCamera camera) {
+    public void render(SpriteBatch batch, OrthographicCamera camera, boolean ui) {
         batch.draw(this.tileMapFbo, 0, 0);
 
         for(Entity entity : this.getEntities()) {
@@ -173,7 +177,9 @@ public class Map {
             batch.begin();
         }
 
-        this.hudContainer.render(batch, camera);
+        if(ui) {
+            this.hudContainer.render(batch, camera);
+        }
     }
 
     public void update(OrthographicCamera camera) {

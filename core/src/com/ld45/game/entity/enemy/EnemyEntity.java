@@ -2,6 +2,7 @@ package com.ld45.game.entity.enemy;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.DirectionalAnimation;
@@ -15,8 +16,13 @@ public abstract class EnemyEntity extends LivingEntity {
 
     private boolean attacking;
 
-    public EnemyEntity(Vector2 position, Map parentMap, float weight) {
+    private Color attackColor;
+    private float attackAlpha;
+
+    public EnemyEntity(Vector2 position, Map parentMap, float weight, Color attackColor, float attackAlpha) {
         super(position, parentMap, weight);
+        this.attackColor = attackColor;
+        this.attackAlpha = attackAlpha;
         this.attackAnimation = this.setupAttackAnimation();
     }
 
@@ -31,9 +37,13 @@ public abstract class EnemyEntity extends LivingEntity {
     @Override
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         if(this.attacking) {
-            this.attackAnimation.getActiveSprite(this.getDirection()).setColor(Color.RED);
+            Sprite attackSprite = this.attackAnimation.getActiveSprite(this.getDirection());
+
+            attackSprite.setColor(this.attackColor);
+            attackSprite.setAlpha(this.attackAlpha);
             this.attackAnimation.render(batch, this.getPosition(), this.getDirection());
-            this.attackAnimation.getActiveSprite(this.getDirection()).setColor(Color.WHITE);
+            attackSprite.setColor(Color.WHITE);
+            attackSprite.setAlpha(1);
 
             this.renderDamage(batch, this.attackAnimation.getActiveSprite(this.getDirection()));
         } else {
@@ -71,6 +81,14 @@ public abstract class EnemyEntity extends LivingEntity {
         if(this.getHealth() <= 0) {
             this.explode();
         }
+    }
+
+    public boolean isAttacking() {
+        return this.attacking;
+    }
+
+    public DirectionalAnimation getAttackAnimation() {
+        return this.attackAnimation;
     }
 
 }

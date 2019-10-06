@@ -11,7 +11,7 @@ import com.ld45.game.entity.mind.EntityMind;
 
 public class WanderAttackMind extends EntityMind {
 
-    private float attackRadius = 96;
+    private float attackRadius = 160;
 
     private WanderState wanderState;
 
@@ -23,7 +23,7 @@ public class WanderAttackMind extends EntityMind {
         this.wanderState = new WanderState(this);
         this.registerState(this.wanderState);
 
-        AttackState attackState = new AttackState(this);
+        AttackState attackState = new AttackState(this, true);
         this.registerState(attackState);
 
         this.setState("wander");

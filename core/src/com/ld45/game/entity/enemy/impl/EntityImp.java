@@ -18,7 +18,7 @@ import com.ld45.game.map.Map;
 public class EntityImp extends EnemyEntity {
 
     public EntityImp(Vector2 position, Map parentMap) {
-        super(position, parentMap, 0.5f);
+        super(position, parentMap, 0.5f, Color.RED, 1);
         this.setSpeed(4, 4);
     }
 
