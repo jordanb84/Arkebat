@@ -180,7 +180,7 @@ public class MapEditor extends ApplicationAdapter {
     }
 
     public void resize(int width, int height) {
-
+        this.map.resize(width, height);
     }
 
     public void updateTitle() {

@@ -15,7 +15,7 @@ import java.util.List;
 public class Inventory {
 
     private int columns = 9;
-    private int rows = 1;
+    private int rows = 2;
 
     private List<InventoryCell> inventoryCells = new ArrayList<InventoryCell>();
 
@@ -262,6 +262,10 @@ public class Inventory {
         if(this.hungerRemaining > this.hungerMax) {
             this.hungerRemaining = this.hungerMax;
         }
+    }
+
+    public int getColumns() {
+        return this.columns;
     }
 
 }

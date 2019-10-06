@@ -37,7 +37,9 @@ public abstract class UiContainer {
     public abstract void setup();
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
+        batch.end();
         this.stage.draw();
+        batch.begin();
     }
 
     public void update(OrthographicCamera camera) {

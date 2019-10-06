@@ -15,18 +15,30 @@ public class HudContainer extends UiContainer {
         super(stateManager, SkinType.Sgx.SKIN);
         this.inventory = inventory;
 
+        int columnsAdded = 0;
+
         for(InventoryCell inventoryCell : this.inventory.getInventoryCells()) {
             Label amountDisplay = new Label("0", this.getDefaultSkin());
 
             inventoryCell.setAmountDisplay(amountDisplay);
 
-            this.getPrimaryTable().bottom().add(inventoryCell);
+            this.getPrimaryTable().bottom().add(inventoryCell).width(64).height(64);
             this.getPrimaryTable().add(amountDisplay);
+
+            columnsAdded++;
+
+            if(columnsAdded >= this.inventory.getColumns()) {
+                this.getPrimaryTable().row();
+                columnsAdded = 0;
+            }
         }
+
+        this.getPrimaryTable().padBottom(32);
     }
 
     @Override
     public void setup() {
+
     }
 
 }

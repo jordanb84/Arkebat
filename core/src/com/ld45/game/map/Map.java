@@ -222,6 +222,10 @@ public class Map {
         this.hudContainer.update(camera);
     }
 
+    public void resize(int width, int height) {
+        this.hudContainer.resize(width, height);
+    }
+
     public void spawnEntity(Entity entity) {
         this.entitySpawnQueue.add(entity);
 
