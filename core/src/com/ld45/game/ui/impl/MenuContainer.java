@@ -15,12 +15,8 @@ import com.ld45.game.util.Screen;
 
 public class MenuContainer extends UiContainer {
 
-    public MenuContainer(StateManager stateManager) {
+    public MenuContainer(final StateManager stateManager, final StateMap stateMap) {
         super(stateManager, SkinType.Sgx.SKIN);
-    }
-
-    @Override
-    public void setup() {
         TextButton playButton = new TextButton("Play", this.getDefaultSkin());
 
         final StateManager manager = this.getStateManager();
@@ -29,8 +25,9 @@ public class MenuContainer extends UiContainer {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                manager.registerState("map", new StateMap(manager));
-                manager.setActiveState("map");
+                //manager.registerState("map", new StateMap(manager));
+                //manager.setActiveState("map");
+                stateMap.start();
             }
         });
 
@@ -44,6 +41,11 @@ public class MenuContainer extends UiContainer {
         titleLabel.setPosition(Screen.centerX(titleLabel.getWidth()), playButton.getY() + titleLabel.getHeight() * 1.5f);
 
         this.getPrimaryTable().addActor(titleLabel);
+    }
+
+    @Override
+    public void setup() {
+
     }
 
     @Override

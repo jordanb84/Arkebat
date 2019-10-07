@@ -58,6 +58,10 @@ public class Inventory {
     }
 
     public void update(OrthographicCamera camera) {
+        if(this.hasAllFoods()) {
+            this.player.getParentMap().win();
+        }
+
         this.setMouseOverCell(false);
         this.getSelectedCell().setSelected(true);
 
@@ -71,23 +75,25 @@ public class Inventory {
             this.moveDown();
         }
 
-        if(this.player.isMoving()) {
-            this.hungerElapsed += 1 * Gdx.graphics.getDeltaTime();
+        if(!this.player.getParentMap().isGameOver() && !this.player.getParentMap().isGameWon()) {
+            if (this.player.isMoving()) {
+                this.hungerElapsed += 1 * Gdx.graphics.getDeltaTime();
 
-            if (this.hungerElapsed >= this.hungerInterval) {
-                this.hungerRemaining -= this.hungerRandom.nextInt(3);
-                this.hungerElapsed = 0;
+                if (this.hungerElapsed >= this.hungerInterval) {
+                    this.hungerRemaining -= this.hungerRandom.nextInt(3);
+                    this.hungerElapsed = 0;
+                }
             }
-        }
 
-        if(this.hungerRemaining <= 0) {
-            this.hungerRemaining = 0;
+            if (this.hungerRemaining <= 0) {
+                this.hungerRemaining = 0;
 
-            this.dyingElapsed += 1 * Gdx.graphics.getDeltaTime();
+                this.dyingElapsed += 1 * Gdx.graphics.getDeltaTime();
 
-            if(this.dyingElapsed >= this.dyingInterval) {
-                this.player.setHealth(this.player.getHealth() - 1);
-                this.dyingElapsed = 0;
+                if (this.dyingElapsed >= this.dyingInterval) {
+                    this.player.setHealth(this.player.getHealth() - 1);
+                    this.dyingElapsed = 0;
+                }
             }
         }
     }
@@ -301,6 +307,10 @@ public class Inventory {
 
     public List<ItemType> getCollectedFoods() {
         return this.collectedFoods;
+    }
+
+    public boolean hasAllFoods() {
+        return this.collectedFoods.size() >= ItemType.values().length;
     }
 
 }

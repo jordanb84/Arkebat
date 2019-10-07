@@ -1,14 +1,19 @@
 package com.ld45.game.ui.impl;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.inventory.Inventory;
 import com.ld45.game.inventory.InventoryCell;
@@ -28,6 +33,8 @@ public class HudContainer extends UiContainer {
     private Window gameOverWindow;
 
     private boolean showedRestart;
+
+    private OrthographicCamera camera;
 
     public HudContainer(StateManager stateManager, Inventory inventory) {
         super(stateManager, SkinType.Sgx.SKIN);
@@ -101,6 +108,10 @@ public class HudContainer extends UiContainer {
         this.gameOverWindow.addActor(exitButton);
 
         this.gameOverWindow.setPosition(Screen.SCREEN_WIDTH / 2 - this.gameOverWindow.getWidth() / 2, Screen.SCREEN_HEIGHT / 2 - this.gameOverWindow.getHeight() / 2);
+
+        this.camera = new OrthographicCamera();
+        this.camera.setToOrtho(false, Screen.SCREEN_WIDTH, Screen.SCREEN_HEIGHT);
+
     }
 
     @Override
@@ -115,6 +126,19 @@ public class HudContainer extends UiContainer {
             this.getPrimaryTable().addActor(this.gameOverWindow);
             this.showedRestart = true;
         }
+
+        if(this.map.isGameWon() && !this.showedRestart) {
+            this.gameOverWindow.getTitleLabel().setText("You won!");
+            this.getPrimaryTable().addActor(this.gameOverWindow);
+            this.showedRestart = true;
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch batch, OrthographicCamera camera) {
+        batch.setProjectionMatrix(this.camera.combined);
+        super.render(batch, camera);
+        batch.setProjectionMatrix(camera.combined);
     }
 
 }

@@ -17,7 +17,7 @@ public class HealEntity extends EntityDroppedItem {
     public HealEntity(Vector2 position, Map parentMap, int healRate) {
         super(position, parentMap, Assets.getInstance().getSprite("entity/heal.png"));
         this.setScaleMultiplier(0.6f);
-        this.healRate = healRate;
+        this.healRate = (int) (healRate * 2);
     }
 
     @Override

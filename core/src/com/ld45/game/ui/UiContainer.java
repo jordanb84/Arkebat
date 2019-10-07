@@ -62,4 +62,8 @@ public abstract class UiContainer {
         return this.stateManager;
     }
 
+    public Stage getStage() {
+        return this.stage;
+    }
+
 }

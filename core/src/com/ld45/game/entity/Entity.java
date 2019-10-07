@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.map.Map;
 
@@ -364,10 +365,12 @@ public abstract class Entity {
     }
 
     public void damage(float damage) {
-        this.health -= damage;
+        if((!this.getParentMap().isGameWon() && !this.getParentMap().isGameOver()) || this instanceof EnemyEntity) {
+            this.health -= damage;
 
-        this.damaged = true;
-        this.elapsedSinceDamage = 0;
+            this.damaged = true;
+            this.elapsedSinceDamage = 0;
+        }
     }
 
     public float getHealth() {

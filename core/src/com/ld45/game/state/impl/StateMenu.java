@@ -21,7 +21,7 @@ public class StateMenu extends State {
 
     @Override
     public void create() {
-        this.menuContainer = new MenuContainer(this.getManager());
+        //this.menuContainer = new MenuContainer(this.getManager());
     }
 
     @Override

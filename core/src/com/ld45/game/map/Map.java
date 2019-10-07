@@ -62,6 +62,8 @@ public class Map {
     private float gameOverElapsed;
     private float gameOverMax = 3f;
 
+    private boolean gameWon;
+
     public Map(MapDefinition mapDefinition, List<MapLayer> mapLayers, StateManager stateManager) {
         this.mapDefinition = mapDefinition;
         this.mapLayers = mapLayers;
@@ -370,6 +372,18 @@ public class Map {
 
     public boolean isGameOver() {
         return this.gameOver;
+    }
+
+    public void win() {
+        this.gameWon = true;
+    }
+
+    public boolean isGameWon() {
+        return this.gameWon;
+    }
+
+    public HudContainer getHudContainer() {
+        return this.hudContainer;
     }
 
 }
