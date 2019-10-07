@@ -394,4 +394,14 @@ public abstract class Entity {
 
     }
 
+    public void setLight(PointLight light) {
+        this.light = light;
+    }
+
+    public void updateLightPosition() {
+        if(this.light != null) {
+            this.light.setPosition(this.getPosition().x + this.getWidth() / 2, this.getPosition().y + this.getHeight() / 2);
+        }
+    }
+
 }

@@ -1,11 +1,15 @@
 package com.ld45.game.tile;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.ld45.game.assets.Assets;
 import com.ld45.game.tile.impl.BasicTile;
+import com.ld45.game.tile.impl.LightTile;
+import com.ld45.game.tile.impl.SizedTile;
 
 import java.util.*;
 
@@ -65,7 +69,11 @@ public class TileRegistry {
     }
 
     private void registerCustomTiles(Texture tileSheet) {
-
+        this.registerTile(new LightTile(Color.ORANGE, 261, tileSheet, this));
+        this.registerTile(new SizedTile(new Vector2(32, 16), 44, tileSheet, this));
+        this.registerTile(new SizedTile(new Vector2(32, 16), 33, tileSheet, this));
+        this.registerTile(new SizedTile(new Vector2(24, 32), 16, tileSheet, this));
+        this.registerTile(new SizedTile(new Vector2(24, 32), 18, tileSheet, this));
     }
 
     private void registerTile(Tile tileInstance) {

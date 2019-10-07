@@ -58,7 +58,7 @@ public class Tile {
     }
 
     public Rectangle getBody(Vector2 position) {
-        return new Rectangle(position.x, position.y, this.tileRegistry.getTileWidth(), this.tileRegistry.getTileHeight());
+        return new Rectangle(position.x, position.y, this.getBoxSize().x, this.getBoxSize().y);
     }
 
     public Sprite getSprite() {
@@ -83,6 +83,10 @@ public class Tile {
 
     public float getHeight() {
         return this.getSprite().getHeight();
+    }
+
+    public Vector2 getBoxSize() {
+        return new Vector2(this.getWidth(), this.getHeight());
     }
 
 }

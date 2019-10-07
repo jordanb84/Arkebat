@@ -46,7 +46,7 @@ public class StateMap extends State {
         super.reset();
         TileRegistry tileRegistry = new TileRegistry("tile/tiledata.data");
 
-        this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box27.map"), tileRegistry, this.getManager());
+        this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box30.map"), tileRegistry, this.getManager());
     }
 
 }

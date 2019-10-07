@@ -132,7 +132,7 @@
             "solid": true,
             "name": "tile_16",
             "id": 16,
-            "usesCustomClass": false,
+            "usesCustomClass": true,
             "sheetY": 32,
             "sheetX": 0
         },
@@ -148,7 +148,7 @@
             "solid": true,
             "name": "tile_18",
             "id": 18,
-            "usesCustomClass": false,
+            "usesCustomClass": true,
             "sheetY": 32,
             "sheetX": 64
         },
@@ -268,7 +268,7 @@
             "solid": true,
             "name": "tile_33",
             "id": 33,
-            "usesCustomClass": false,
+            "usesCustomClass": true,
             "sheetY": 64,
             "sheetX": 32
         },
@@ -356,7 +356,7 @@
             "solid": true,
             "name": "tile_44",
             "id": 44,
-            "usesCustomClass": false,
+            "usesCustomClass": true,
             "sheetY": 64,
             "sheetX": 384
         },
@@ -2092,7 +2092,7 @@
             "solid": false,
             "name": "tile_261",
             "id": 261,
-            "usesCustomClass": false,
+            "usesCustomClass": true,
             "sheetY": 512,
             "sheetX": 160
         },

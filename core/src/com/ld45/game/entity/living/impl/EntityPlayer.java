@@ -1,5 +1,7 @@
 package com.ld45.game.entity.living.impl;
 
+import box2dLight.PointLight;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.Animation;
@@ -21,6 +23,8 @@ public class EntityPlayer extends LivingEntity {
         this.setHasShadow(true);
         this.setMaxHealth(30);
         this.setHealth(30);
+
+        this.setLight(new PointLight(parentMap.getRayHandler(), parentMap.getLightRayCount(), Color.WHITE, 60, this.getPosition().x, this.getPosition().y));
     }
 
     @Override
@@ -49,6 +53,9 @@ public class EntityPlayer extends LivingEntity {
     public void update(OrthographicCamera camera) {
         super.update(camera);
         this.inventory.update(camera);
+        this.updateLightPosition();
+
+        this.flickerLight(22, 70, 40);
     }
 
     @Override
