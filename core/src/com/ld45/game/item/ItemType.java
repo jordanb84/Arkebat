@@ -15,7 +15,11 @@ public enum ItemType {
     Cantaloupe("cantaloupe.png", "Cantaloupe", "Juicy! Don't eat too many seeds!", 7, 8, 2),
     Fish("fish.png", "Fish", "Smelly... but nutritious?", 3, 4, 1),
     Pie("pie.png", "Pie", "Time for dessert!", 16, 6, 2),
-    Syrup("syrup.png", "Maple Syrup", "Eh?", 10, 8, 2)
+    Syrup("syrup.png", "Maple Syrup", "Eh?", 10, 8, 2),
+    Pickle("pickle.png", "Pickle", "Somewhat sour!", 12, 10, 2),
+    Pineapple("pineapple.png", "Pineapple", "Tropical!", 15, 11, 2),
+    Sausage("sausage.png", "Sausage", "Well cooked!", 16, 13, 2),
+    Steak("steak.png", "Steak", "Perfect for tossing at someone!", 20, 14, 2)
     ;
 
     ItemType(String spriteName, String displayName, String description, int damage, int hungerRestoration, int health) {

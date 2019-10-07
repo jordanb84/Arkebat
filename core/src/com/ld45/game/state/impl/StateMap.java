@@ -9,6 +9,7 @@ import com.ld45.game.map.MapDefinition;
 import com.ld45.game.state.State;
 import com.ld45.game.state.StateManager;
 import com.ld45.game.tile.TileRegistry;
+import com.ld45.game.ui.impl.HudContainer;
 import com.ld45.game.ui.impl.MenuContainer;
 
 public class StateMap extends State {
@@ -19,6 +20,8 @@ public class StateMap extends State {
 
     private boolean menu = true;
 
+    private HudContainer hudContainer;
+
     public StateMap(StateManager manager) {
         super(manager);
         this.menuContainer = new MenuContainer(manager, this);
@@ -26,7 +29,13 @@ public class StateMap extends State {
 
     @Override
     public void create() {
+        this.hudContainer = new HudContainer(this.getManager());
+
         this.reset();
+
+        this.hudContainer.create(this.map.getEntityPlayer().getInventory());
+
+        this.map.setHudContainer(this.hudContainer);
     }
 
     @Override
@@ -58,7 +67,13 @@ public class StateMap extends State {
         super.reset();
         TileRegistry tileRegistry = new TileRegistry("tile/tiledata.data");
 
-        this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box30.map"), tileRegistry, this.getManager());
+        this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box34.map"), tileRegistry, this.getManager());
+
+        this.map.setHudContainer(this.hudContainer);
+
+        this.hudContainer.restart(this.map);
+
+        this.hudContainer.setInventory(this.map.getEntityPlayer().getInventory());
     }
 
     public void start() {

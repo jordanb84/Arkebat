@@ -43,7 +43,7 @@ public class LightTile extends BasicTile {
             tileData.getLight().setXray(true);
         }
 
-        this.flickerLight(16, 50, 30, tileData);
+        this.flickerLight(20, 50, 30, tileData);
     }
 
     public void flickerLight(int amount, int maxDistance, int minDistance, TileData tileData) {

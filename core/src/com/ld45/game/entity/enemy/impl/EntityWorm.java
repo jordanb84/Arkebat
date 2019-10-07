@@ -78,7 +78,7 @@ public class EntityWorm extends EnemyEntity {
 
     @Override
     public int getDamage() {
-        return 3;
+        return 6;
     }
 
 }

@@ -101,8 +101,6 @@ public class Map {
         this.regenerateTilemapFrameBuffer();
 
         this.initiateTiles();
-
-        this.hudContainer = new HudContainer(this.stateManager, this.getEntityPlayer().getInventory());
     }
 
     public void regenerateTilemapFrameBuffer() {
@@ -157,6 +155,8 @@ public class Map {
         this.spawnEntity(new EntityWorm(new Vector2(512, 768), this));
         this.spawnEntity(new EntityWorm(new Vector2(896, 928), this));
         this.spawnEntity(new EntityWorm(new Vector2(928, 768), this));
+        this.spawnEntity(new EntityWorm(new Vector2(1184, 608), this));
+        this.spawnEntity(new EntityWorm(new Vector2(1120, 416), this));
 
         this.spawnEntity(new EntityImp(new Vector2(704, 800), this));
         this.spawnEntity(new EntityImp(new Vector2(768, 928), this));
@@ -164,23 +164,34 @@ public class Map {
 
         this.spawnEntity(new EntityIce(new Vector2(1184, 832), this));
         this.spawnEntity(new EntityIce(new Vector2(1120, 864), this));
+
+        this.spawnEntity(new EntityIce(new Vector2(1184, 544), this));
+        this.spawnEntity(new EntityIce(new Vector2(992, 416), this));
+        this.spawnEntity(new EntityIce(new Vector2(1024, 416), this));
         //this.spawnEntity(new EntityIce(new Vector2(startingPosition.x + 32, startingPosition.y + 64), this));
 
         this.spawnEntity(new EntityDroppedItem(new Vector2(96, 992), this, ItemType.Cookie, 5));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(448, 1024), this, ItemType.Cookie, 4));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(448, 1024), this, ItemType.Cookie, 6));
         this.spawnEntity(new EntityDroppedItem(new Vector2(384, 1152), this, ItemType.Bacon, 4));
         this.spawnEntity(new EntityDroppedItem(new Vector2(416, 1168), this, ItemType.Eggs, 3));
         this.spawnEntity(new EntityDroppedItem(new Vector2(736, 736), this, ItemType.Pretzel, 5));
         this.spawnEntity(new EntityDroppedItem(new Vector2(672, 736), this, ItemType.Jam, 5));
         this.spawnEntity(new EntityDroppedItem(new Vector2(928, 1024), this, ItemType.Beer, 6));
         this.spawnEntity(new EntityDroppedItem(new Vector2(992, 736), this, ItemType.Pig, 1));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(544, 736), this, ItemType.Fish, 1));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(544, 736), this, ItemType.Fish, 4));
         this.spawnEntity(new EntityDroppedItem(new Vector2(768, 960), this, ItemType.Fish, 3));
         this.spawnEntity(new EntityDroppedItem(new Vector2(960, 960), this, ItemType.Apple_Worm, 6));
         this.spawnEntity(new EntityDroppedItem(new Vector2(576, 800), this, ItemType.Eggs, 3));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 992), this, ItemType.Syrup, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 992), this, ItemType.Syrup, 10));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Pie, 6));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Cantaloupe, 8));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 736), this, ItemType.Pickle, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 512), this, ItemType.Pineapple, 8));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 352), this, ItemType.Sausage, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(896, 448), this, ItemType.Steak, 8));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 640), this, ItemType.Beer, 10));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1120, 480), this, ItemType.Jam, 10));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1088, 448), this, ItemType.Jam, 10));
     }
 
     private void initiateTiles() {
@@ -261,7 +272,9 @@ public class Map {
     }
 
     public void resize(int width, int height) {
-        this.hudContainer.resize(width, height);
+        if(this.hudContainer != null) {
+            this.hudContainer.resize(width, height);
+        }
     }
 
     public void spawnEntity(Entity entity) {
@@ -384,6 +397,10 @@ public class Map {
 
     public HudContainer getHudContainer() {
         return this.hudContainer;
+    }
+
+    public void setHudContainer(HudContainer hudContainer) {
+        this.hudContainer = hudContainer;
     }
 
 }

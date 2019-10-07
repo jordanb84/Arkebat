@@ -21,6 +21,7 @@ import com.ld45.game.state.StateManager;
 import com.ld45.game.tile.Tile;
 import com.ld45.game.tile.TileData;
 import com.ld45.game.tile.TileRegistry;
+import com.ld45.game.ui.impl.HudContainer;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -74,6 +75,11 @@ public class MapEditor extends ApplicationAdapter {
         this.map = new Map(mapDefinition, this.tileRegistry.getTileIdByName("base"), this.tileRegistry, new StateManager());
 
         this.overlaySprite = Assets.getInstance().getSprite("tile/overlay.png");
+
+        HudContainer hudContainer = new HudContainer(null);
+        this.map.setHudContainer(hudContainer);
+
+        hudContainer.create(this.map.getEntityPlayer().getInventory());
     }
 
     private void writeTilesetDataForSheet(String tileSheetPath, int tileWidth, int tileHeight) {
@@ -257,6 +263,11 @@ public class MapEditor extends ApplicationAdapter {
                 File selectedFile = fileChooser.getSelectedFile();
 
                 this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/" + selectedFile.getName()), this.tileRegistry, new StateManager());
+
+                HudContainer hudContainer = new HudContainer(null);
+                this.map.setHudContainer(hudContainer);
+
+                hudContainer.create(this.map.getEntityPlayer().getInventory());
 
                 System.out.println("Replaced map");
             }

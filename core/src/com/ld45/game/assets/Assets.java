@@ -134,6 +134,10 @@ public class Assets {
         this.loadTexture("entity/food/pie.png");
         this.loadTexture("entity/food/fish.png");
         this.loadTexture("entity/food/syrup.png");
+        this.loadTexture("entity/food/pineapple.png");
+        this.loadTexture("entity/food/pickle.png");
+        this.loadTexture("entity/food/sausage.png");
+        this.loadTexture("entity/food/steak.png");
 
         this.loadTexture("ui/food/cookie.png");
         this.loadTexture("ui/food/bacon.png");
@@ -147,6 +151,10 @@ public class Assets {
         this.loadTexture("ui/food/pie.png");
         this.loadTexture("ui/food/fish.png");
         this.loadTexture("ui/food/syrup.png");
+        this.loadTexture("ui/food/pineapple.png");
+        this.loadTexture("ui/food/pickle.png");
+        this.loadTexture("ui/food/sausage.png");
+        this.loadTexture("ui/food/steak.png");
 
         this.loadTexture("entity/heal.png");
 

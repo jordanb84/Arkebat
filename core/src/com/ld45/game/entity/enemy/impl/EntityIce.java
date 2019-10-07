@@ -74,7 +74,7 @@ public class EntityIce extends EnemyEntity {
 
     @Override
     public int getDamage() {
-        return 6;
+        return 9;
     }
 
 }

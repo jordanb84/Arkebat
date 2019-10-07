@@ -36,8 +36,11 @@ public class HudContainer extends UiContainer {
 
     private OrthographicCamera camera;
 
-    public HudContainer(StateManager stateManager, Inventory inventory) {
+    public HudContainer(StateManager stateManager) {
         super(stateManager, SkinType.Sgx.SKIN);
+    }
+
+    public void create(Inventory inventory) {
         this.inventory = inventory;
         this.map = this.inventory.getPlayer().getParentMap();
 
@@ -112,6 +115,10 @@ public class HudContainer extends UiContainer {
         this.camera = new OrthographicCamera();
         this.camera.setToOrtho(false, Screen.SCREEN_WIDTH, Screen.SCREEN_HEIGHT);
 
+        this.getPrimaryTable().addActor(this.gameOverWindow);
+        this.gameOverWindow.setVisible(false);
+
+        this.gameOverWindow.setMovable(false);
     }
 
     @Override
@@ -123,15 +130,17 @@ public class HudContainer extends UiContainer {
     public void update(OrthographicCamera camera) {
         super.update(camera);
         if(this.map.isGameOver() && !this.showedRestart) {
-            this.getPrimaryTable().addActor(this.gameOverWindow);
             this.showedRestart = true;
+            this.gameOverWindow.setVisible(true);
+            this.gameOverWindow.getTitleLabel().setText("You lost!");
         }
 
         if(this.map.isGameWon() && !this.showedRestart) {
             this.gameOverWindow.getTitleLabel().setText("You won!");
-            this.getPrimaryTable().addActor(this.gameOverWindow);
             this.showedRestart = true;
+            this.gameOverWindow.setVisible(true);
         }
+
     }
 
     @Override
@@ -141,6 +150,20 @@ public class HudContainer extends UiContainer {
         batch.setProjectionMatrix(camera.combined);
     }
 
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void restart(Map map) {
+        this.showedRestart = false;
+
+        if(this.gameOverWindow != null) {
+            this.gameOverWindow.setVisible(false);
+            System.out.println("Set visible to false");
+        }
+
+        this.map = map;
+    }
 }
 
 class InfoWindow extends Window {

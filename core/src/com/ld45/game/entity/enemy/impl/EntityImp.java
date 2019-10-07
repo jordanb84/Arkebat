@@ -69,7 +69,7 @@ public class EntityImp extends EnemyEntity {
 
     @Override
     public int getDamage() {
-        return 4;
+        return 9;
     }
 
 }
