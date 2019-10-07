@@ -55,6 +55,8 @@ public class Inventory {
         this.selectionInputs.put(Input.Keys.NUM_9, 8);
 
         this.player = player;
+
+        System.out.println("Created inventory");
     }
 
     public void update(OrthographicCamera camera) {
@@ -106,10 +108,10 @@ public class Inventory {
                 InventoryCell emptyCell = new InventoryCell(this, cellIndex, SkinType.Sgx.SKIN);
 
                 this.inventoryCells.add(emptyCell);
-
                 cellIndex++;
             }
         }
+
     }
 
     public void addItem(ItemType item, int amount) {

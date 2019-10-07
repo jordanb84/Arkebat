@@ -20,9 +20,13 @@ import com.ld45.game.inventory.InventoryCell;
 import com.ld45.game.item.ItemType;
 import com.ld45.game.map.Map;
 import com.ld45.game.state.StateManager;
+import com.ld45.game.state.impl.StateMap;
 import com.ld45.game.ui.SkinType;
 import com.ld45.game.ui.UiContainer;
 import com.ld45.game.util.Screen;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HudContainer extends UiContainer {
 
@@ -35,6 +39,8 @@ public class HudContainer extends UiContainer {
     private boolean showedRestart;
 
     private OrthographicCamera camera;
+
+    private List<InventoryCell> inventoryCells = new ArrayList<>();
 
     public HudContainer(StateManager stateManager) {
         super(stateManager, SkinType.Sgx.SKIN);
@@ -51,6 +57,11 @@ public class HudContainer extends UiContainer {
 
         int columnsAdded = 0;
 
+        /**
+         * On reset, we need to pass these old inventory cells to the new player's
+         * inventory, and clear them
+         */
+
         for(InventoryCell inventoryCell : this.inventory.getInventoryCells()) {
             Label amountDisplay = new Label("0", this.getDefaultSkin());
 
@@ -65,7 +76,11 @@ public class HudContainer extends UiContainer {
                 this.getPrimaryTable().row();
                 columnsAdded = 0;
             }
+
+            this.inventoryCells.add(inventoryCell);
         }
+
+        System.out.println("Cells available on init: " + this.inventoryCells.size());
 
         this.getPrimaryTable().padBottom(32);
 
@@ -84,6 +99,9 @@ public class HudContainer extends UiContainer {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 map.reset();
+                StateMap mapState = ((StateMap) getStateManager().getActiveState());
+
+                mapState.die();
             }
         });
 
@@ -151,7 +169,33 @@ public class HudContainer extends UiContainer {
     }
 
     public void setInventory(Inventory inventory) {
+        /**System.out.println("Cell count " + this.inventoryCells.size() + " new cell count " + inventory.getInventoryCells().size());
         this.inventory = inventory;
+        this.inventoryCells = this.inventory.getInventoryCells();
+
+        System.out.println("C cells: " + this.inventoryCells.size());
+
+        if(this.inventory.getInventoryCells().size() > 0) {
+            //this.inventory.getInventoryCells().clear();
+        }
+
+        int addedCells = 0;
+        for(InventoryCell inventoryCell : this.inventoryCells) {
+            inventoryCell.setItem(null, 0);
+            //this.inventory.getInventoryCells().add(inventoryCell);
+
+            addedCells++;
+        }
+
+        System.out.println("Added " + addedCells + " cells");**/
+
+        this.inventory = inventory;
+
+        /**
+         * On death, and ONLY on death, not on normal init,
+         * we need to take every inventoryCell in the new inventory instance
+         * and replace it with the original inventory cells held here in HudContainer
+         */
     }
 
     public void restart(Map map) {
@@ -164,6 +208,11 @@ public class HudContainer extends UiContainer {
 
         this.map = map;
     }
+
+    public List<InventoryCell> getInventoryCells() {
+        return this.inventoryCells;
+    }
+
 }
 
 class InfoWindow extends Window {

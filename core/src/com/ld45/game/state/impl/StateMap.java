@@ -3,6 +3,8 @@ package com.ld45.game.state.impl;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.ld45.game.inventory.Inventory;
+import com.ld45.game.inventory.InventoryCell;
 import com.ld45.game.io.MapImporter;
 import com.ld45.game.map.Map;
 import com.ld45.game.map.MapDefinition;
@@ -69,11 +71,22 @@ public class StateMap extends State {
 
         this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box34.map"), tileRegistry, this.getManager());
 
-        this.map.setHudContainer(this.hudContainer);
-
-        this.hudContainer.restart(this.map);
+        this.map.setHudContainer(this.hudContainer); //the problem is here, where you set a new hud container that has no cells yet
 
         this.hudContainer.setInventory(this.map.getEntityPlayer().getInventory());
+
+        this.hudContainer.restart(this.map);
+    }
+
+    public void die() {
+        Inventory newInventory = this.map.getEntityPlayer().getInventory();
+
+        newInventory.getInventoryCells().clear();
+
+        for(InventoryCell inventoryCell : this.hudContainer.getInventoryCells()) {
+            inventoryCell.setItem(null, 0);
+            newInventory.getInventoryCells().add(inventoryCell);
+        }
     }
 
     public void start() {
