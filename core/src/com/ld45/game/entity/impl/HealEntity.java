@@ -2,6 +2,7 @@ package com.ld45.game.entity.impl;
 
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.assets.Assets;
+import com.ld45.game.audio.SfxType;
 import com.ld45.game.entity.droppeditem.EntityDroppedItem;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.map.Map;
@@ -24,6 +25,7 @@ public class HealEntity extends EntityDroppedItem {
     public void pickup(EntityPlayer player) {
         this.getParentMap().despawnEntity(this);
         player.setHealth(player.getHealth() + this.healRate + this.healRandom.nextInt(1));
+        SfxType.playSound(SfxType.Bell, 1);
     }
 
 }

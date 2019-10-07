@@ -83,7 +83,7 @@ public class StateMap extends State {
         super.reset();
         TileRegistry tileRegistry = new TileRegistry("tile/tiledata.data");
 
-        this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box34.map"), tileRegistry, this.getManager());
+        this.map = MapImporter.getInstance().getMapFromFile(Gdx.files.internal("map/box40.map"), tileRegistry, this.getManager());
 
         this.map.setHudContainer(this.hudContainer); //the problem is here, where you set a new hud container that has no cells yet
 

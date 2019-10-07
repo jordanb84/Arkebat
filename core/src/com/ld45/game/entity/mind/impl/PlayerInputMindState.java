@@ -30,7 +30,10 @@ public class PlayerInputMindState extends EntityMindState {
     @Override
     public void update(OrthographicCamera camera, LivingEntity parentEntity) {
         camera.position.set(parentEntity.getPosition().x + parentEntity.getWidth() / 2, parentEntity.getPosition().y + parentEntity.getHeight() / 2, 0);
+        this.containCamera(camera);
         camera.update();
+
+        //System.out.println(camera.position.x + "/" + camera.position.y);
 
         if(Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) {
             parentEntity.move(Direction.UP);
@@ -74,6 +77,25 @@ public class PlayerInputMindState extends EntityMindState {
     @Override
     public void onCollision(Direction collisionDirection, Vector2 collisionPosition) {
 
+    }
+
+    private void containCamera(OrthographicCamera camera) {
+        int worldEdgeMinX = 170;
+        int worldEdgeMaxX = 1100;
+
+        int worldEdgeMaxY = 1180;
+
+        if(camera.position.x < worldEdgeMinX) {
+            camera.position.set(worldEdgeMinX, camera.position.y, 0);
+        }
+
+        if(camera.position.x > worldEdgeMaxX) {
+            camera.position.set(worldEdgeMaxX, camera.position.y, 0);
+        }
+
+        if(camera.position.y > worldEdgeMaxY) {
+            camera.position.set(camera.position.x, worldEdgeMaxY, 0);
+        }
     }
 
 }

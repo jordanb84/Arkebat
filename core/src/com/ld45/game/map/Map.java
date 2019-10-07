@@ -179,19 +179,19 @@ public class Map {
         this.spawnEntity(new EntityDroppedItem(new Vector2(992, 736), this, ItemType.Pig, 1));
         this.spawnEntity(new EntityDroppedItem(new Vector2(544, 736), this, ItemType.Fish, 4));
         this.spawnEntity(new EntityDroppedItem(new Vector2(768, 960), this, ItemType.Fish, 3));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(960, 960), this, ItemType.Apple_Worm, 6));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(960, 960), this, ItemType.Apple_Worm, 8));
         this.spawnEntity(new EntityDroppedItem(new Vector2(576, 800), this, ItemType.Eggs, 3));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 992), this, ItemType.Syrup, 12));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 992), this, ItemType.Syrup, 15));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Pie, 6));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Cantaloupe, 8));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 864), this, ItemType.Cantaloupe, 13));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1184, 736), this, ItemType.Pickle, 6));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 512), this, ItemType.Pineapple, 8));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 352), this, ItemType.Sausage, 6));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(896, 448), this, ItemType.Steak, 8));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 352), this, ItemType.Sausage, 8));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(896, 448), this, ItemType.Steak, 10));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1152, 640), this, ItemType.Beer, 10));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1120, 480), this, ItemType.Jam, 10));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1120, 480), this, ItemType.Jam, 12));
         this.spawnEntity(new EntityDroppedItem(new Vector2(1088, 448), this, ItemType.Jam, 10));
-        this.spawnEntity(new EntityDroppedItem(new Vector2(1024, 960), this, ItemType.Pretzel, 3));
+        this.spawnEntity(new EntityDroppedItem(new Vector2(1024, 960), this, ItemType.Pretzel, 5));
     }
 
     private void initiateTiles() {

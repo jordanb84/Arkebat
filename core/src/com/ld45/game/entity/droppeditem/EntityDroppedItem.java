@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.ld45.game.audio.SfxType;
 import com.ld45.game.entity.Entity;
 import com.ld45.game.entity.impl.BurstEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
@@ -94,6 +95,8 @@ public class EntityDroppedItem extends Entity {
         }
 
         player.getInventory().restoreHunger(this.itemType.HUNGER_RESTORATION);
+
+        SfxType.playSound(SfxType.Bell, 1);
     }
 
     public void setScaleMultiplier(float scaleMultiplier) {

@@ -169,6 +169,8 @@ public class Assets {
         this.loadSound("audio/die_0.wav");
         this.loadSound("audio/ice_0.ogg");
         this.loadSound("audio/ghost.mp3");
+        this.loadSound("audio/bell.wav");
+        this.loadSound("audio/win.ogg");
 
         this.loadMusic("audio/bg.ogg");
 

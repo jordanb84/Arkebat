@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ld45.game.audio.SfxType;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.inventory.Inventory;
 import com.ld45.game.inventory.InventoryCell;
@@ -154,6 +155,7 @@ public class HudContainer extends UiContainer {
             this.gameOverWindow.getTitleLabel().setText("You won!");
             this.showedRestart = true;
             this.gameOverWindow.setVisible(true);
+            SfxType.playSound(SfxType.Win, 1);
         }
 
     }
