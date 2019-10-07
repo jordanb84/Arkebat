@@ -58,4 +58,8 @@ public abstract class UiContainer {
         return this.defaultSkin;
     }
 
+    public StateManager getStateManager() {
+        return this.stateManager;
+    }
+
 }

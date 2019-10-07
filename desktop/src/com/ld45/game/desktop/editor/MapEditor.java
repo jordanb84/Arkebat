@@ -179,6 +179,7 @@ public class MapEditor extends ApplicationAdapter {
         this.map.setTile(this.editingLayerIndex, tileIndex, tileId, position);
     }
 
+    @Override
     public void resize(int width, int height) {
         this.map.resize(width, height);
     }

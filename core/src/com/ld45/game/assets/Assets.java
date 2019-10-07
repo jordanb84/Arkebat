@@ -150,6 +150,8 @@ public class Assets {
 
         this.loadTexture("entity/heal.png");
 
+        this.loadTexture("ui/menu.png");
+
         this.loadSkin("ui/arcade/arcade-ui.json");
         this.loadSkin("ui/clean-crispy/clean-crispy-ui.json");
         this.loadSkin("ui/sgxui/sgx-ui.json");

@@ -62,7 +62,7 @@ public class HudContainer extends UiContainer {
         Color transparentColor = new Color(Color.WHITE.r, Color.WHITE.g, Color.WHITE.b, 0.8f);
 
         this.gameOverWindow = new Window("You died!", this.getDefaultSkin());
-        this.gameOverWindow.setSize(300, 300);
+        this.gameOverWindow.setSize(300, 240);
 
         this.gameOverWindow.setColor(transparentColor);
 
@@ -77,7 +77,28 @@ public class HudContainer extends UiContainer {
             }
         });
 
-        this.gameOverWindow.add(restartButton).center();
+        TextButton exitButton = new TextButton("Exit", this.getDefaultSkin());
+        restartButton.setColor(transparentColor);
+
+        exitButton.addCaptureListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                System.exit(0);
+            }
+        });
+
+        restartButton.setSize(120, 60);
+        exitButton.setSize(restartButton.getWidth(), restartButton.getHeight());
+
+        float centerX = this.gameOverWindow.getWidth() / 2 - restartButton.getWidth() / 2;
+        float centerY = this.gameOverWindow.getHeight() / 2 - restartButton.getHeight();
+
+        restartButton.setPosition(centerX, centerY + restartButton.getHeight());
+        exitButton.setPosition(restartButton.getX(), centerY - exitButton.getHeight() / 2);
+
+        this.gameOverWindow.addActor(restartButton);
+        this.gameOverWindow.addActor(exitButton);
 
         this.gameOverWindow.setPosition(Screen.SCREEN_WIDTH / 2 - this.gameOverWindow.getWidth() / 2, Screen.SCREEN_HEIGHT / 2 - this.gameOverWindow.getHeight() / 2);
     }

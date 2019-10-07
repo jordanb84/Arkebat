@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ld45.game.state.StateManager;
 import com.ld45.game.state.impl.StateMap;
+import com.ld45.game.state.impl.StateMenu;
 
 public class Game extends ApplicationAdapter {
 
@@ -26,8 +27,9 @@ public class Game extends ApplicationAdapter {
 
 		this.stateManager = new StateManager();
 
-		this.stateManager.registerState("map", new StateMap(this.stateManager));
-		this.stateManager.setActiveState("map");
+		this.stateManager.registerState("menu", new StateMenu(this.stateManager));
+
+		this.stateManager.setActiveState("menu");
 	}
 
 	@Override
@@ -47,4 +49,11 @@ public class Game extends ApplicationAdapter {
 	public void dispose () {
 
 	}
+
+	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+		this.stateManager.resizeActiveState(width, height);
+	}
+
 }
