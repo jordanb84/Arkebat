@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.DirectionalAnimation;
+import com.ld45.game.audio.SfxType;
 import com.ld45.game.entity.impl.HealEntity;
 import com.ld45.game.entity.living.LivingEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
@@ -113,8 +114,12 @@ public abstract class EnemyEntity extends LivingEntity {
         HealEntity healEntity = new HealEntity(new Vector2(this.getPosition()), this.getParentMap(), this.getDamage());
 
         this.getParentMap().spawnEntity(healEntity);
+
+        SfxType.playSound(this.getDeathSound());
     }
 
     public abstract int getDamage();
+
+    public abstract SfxType getDeathSound();
 
 }

@@ -150,7 +150,6 @@ public class Map {
 
         this.spawnEntity(new EntityWorm(new Vector2(224, 944), this));
         this.spawnEntity(new EntityWorm(new Vector2(448, 1120), this));
-        this.spawnEntity(new EntityWorm(new Vector2(416, 1024), this));
         this.spawnEntity(new EntityWorm(new Vector2(384, 1088), this));
         this.spawnEntity(new EntityWorm(new Vector2(512, 768), this));
         this.spawnEntity(new EntityWorm(new Vector2(896, 928), this));

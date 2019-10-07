@@ -2,7 +2,10 @@ package com.ld45.game.state.impl;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.ld45.game.assets.Assets;
+import com.ld45.game.audio.MusicType;
 import com.ld45.game.inventory.Inventory;
 import com.ld45.game.inventory.InventoryCell;
 import com.ld45.game.io.MapImporter;
@@ -24,9 +27,14 @@ public class StateMap extends State {
 
     private HudContainer hudContainer;
 
+    private Sprite background;
+
+    private boolean playedMusic;
+
     public StateMap(StateManager manager) {
         super(manager);
         this.menuContainer = new MenuContainer(manager, this);
+        this.background = Assets.getInstance().getSprite("ui/menu.png");
     }
 
     @Override
@@ -43,9 +51,15 @@ public class StateMap extends State {
     @Override
     public void render(SpriteBatch batch, OrthographicCamera camera) {
         if(this.menu) {
+            this.background.draw(batch);
             this.menuContainer.render(batch, camera);
         } else {
             this.map.render(batch, camera, true);
+
+            if(!this.playedMusic) {
+                MusicType.loop(MusicType.Background);
+                this.playedMusic = true;
+            }
         }
     }
 

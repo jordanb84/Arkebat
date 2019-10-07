@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ld45.game.animation.Animation;
 import com.ld45.game.animation.DirectionalAnimation;
 import com.ld45.game.assets.Assets;
+import com.ld45.game.audio.SfxType;
 import com.ld45.game.entity.enemy.EnemyEntity;
 import com.ld45.game.entity.living.impl.EntityPlayer;
 import com.ld45.game.entity.mind.EntityMind;
@@ -78,7 +79,12 @@ public class EntityWorm extends EnemyEntity {
 
     @Override
     public int getDamage() {
-        return 6;
+        return 5;
+    }
+
+    @Override
+    public SfxType getDeathSound() {
+        return SfxType.Death_0;
     }
 
 }

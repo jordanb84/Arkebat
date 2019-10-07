@@ -166,33 +166,8 @@ public class HudContainer extends UiContainer {
     }
 
     public void setInventory(Inventory inventory) {
-        /**System.out.println("Cell count " + this.inventoryCells.size() + " new cell count " + inventory.getInventoryCells().size());
         this.inventory = inventory;
-        this.inventoryCells = this.inventory.getInventoryCells();
-
-        System.out.println("C cells: " + this.inventoryCells.size());
-
-        if(this.inventory.getInventoryCells().size() > 0) {
-            //this.inventory.getInventoryCells().clear();
-        }
-
-        int addedCells = 0;
-        for(InventoryCell inventoryCell : this.inventoryCells) {
-            inventoryCell.setItem(null, 0);
-            //this.inventory.getInventoryCells().add(inventoryCell);
-
-            addedCells++;
-        }
-
-        System.out.println("Added " + addedCells + " cells");**/
-
-        this.inventory = inventory;
-
-        /**
-         * On death, and ONLY on death, not on normal init,
-         * we need to take every inventoryCell in the new inventory instance
-         * and replace it with the original inventory cells held here in HudContainer
-         */
+        this.inventory.getCollectedFoods().clear();
     }
 
     public void restart(Map map) {
@@ -299,6 +274,7 @@ class InfoWindow extends Window {
 
     public void setPlayer(EntityPlayer player) {
         this.player = player;
+        this.inventory = player.getInventory();
     }
 
 }

@@ -1,6 +1,8 @@
 package com.ld45.game.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -164,6 +166,12 @@ public class Assets {
         this.loadSkin("ui/clean-crispy/clean-crispy-ui.json");
         this.loadSkin("ui/sgxui/sgx-ui.json");
 
+        this.loadSound("audio/die_0.wav");
+        this.loadSound("audio/ice_0.ogg");
+        this.loadSound("audio/ghost.mp3");
+
+        this.loadMusic("audio/bg.ogg");
+
         this.assetManager.finishLoading();
     }
 
@@ -185,6 +193,22 @@ public class Assets {
 
     public Skin getSkin(String path) {
         return this.assetManager.get(path, Skin.class);
+    }
+
+    public void loadSound(String path) {
+        this.assetManager.load(path, Sound.class);
+    }
+
+    public Sound getSound(String path) {
+        return this.assetManager.get(path, Sound.class);
+    }
+
+    public void loadMusic(String path) {
+        this.assetManager.load(path, Music.class);
+    }
+
+    public Music getMusic(String path) {
+        return this.assetManager.get(path, Music.class);
     }
 
     public static Assets getInstance() {
