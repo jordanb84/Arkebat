@@ -21,8 +21,8 @@ public class EntityPlayer extends LivingEntity {
         this.setSpeed(9, 9);
         this.inventory = new Inventory(this);
         this.setHasShadow(true);
-        this.setMaxHealth(30);
-        this.setHealth(30);
+        this.setMaxHealth(3);
+        this.setHealth(3);
 
         this.setLight(new PointLight(parentMap.getRayHandler(), parentMap.getLightRayCount(), Color.WHITE, 60, this.getPosition().x, this.getPosition().y));
     }

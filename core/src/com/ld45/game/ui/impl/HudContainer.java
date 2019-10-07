@@ -42,6 +42,8 @@ public class HudContainer extends UiContainer {
 
     private List<InventoryCell> inventoryCells = new ArrayList<>();
 
+    private InfoWindow infoWindow;
+
     public HudContainer(StateManager stateManager) {
         super(stateManager, SkinType.Sgx.SKIN);
     }
@@ -55,12 +57,9 @@ public class HudContainer extends UiContainer {
 
         this.getPrimaryTable().addActor(infoWindow);
 
-        int columnsAdded = 0;
+        this.infoWindow = infoWindow;
 
-        /**
-         * On reset, we need to pass these old inventory cells to the new player's
-         * inventory, and clear them
-         */
+        int columnsAdded = 0;
 
         for(InventoryCell inventoryCell : this.inventory.getInventoryCells()) {
             Label amountDisplay = new Label("0", this.getDefaultSkin());
@@ -79,8 +78,6 @@ public class HudContainer extends UiContainer {
 
             this.inventoryCells.add(inventoryCell);
         }
-
-        System.out.println("Cells available on init: " + this.inventoryCells.size());
 
         this.getPrimaryTable().padBottom(32);
 
@@ -207,6 +204,10 @@ public class HudContainer extends UiContainer {
         }
 
         this.map = map;
+
+        if(this.infoWindow != null) {
+            this.infoWindow.setPlayer(this.map.getEntityPlayer());
+        }
     }
 
     public List<InventoryCell> getInventoryCells() {
@@ -294,6 +295,10 @@ class InfoWindow extends Window {
         int totalFoods = ItemType.values().length;
 
         this.collectedFoodsCount.setText(collectedFoods + "/" + totalFoods);
+    }
+
+    public void setPlayer(EntityPlayer player) {
+        this.player = player;
     }
 
 }
