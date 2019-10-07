@@ -16,7 +16,7 @@ public class Game extends ApplicationAdapter {
 	private OrthographicCamera camera;
 
 	private StateManager stateManager;
-	
+
 	@Override
 	public void create () {
 		this.batch = new SpriteBatch();

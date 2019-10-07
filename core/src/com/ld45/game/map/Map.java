@@ -260,13 +260,13 @@ public class Map {
             }
         }**/
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+        /**if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
             camera.setToOrtho(false, Gdx.graphics.getWidth() / 4, Gdx.graphics.getHeight() / 4);
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.K)) {
             camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        }
+        }**/
 
         this.hudContainer.update(camera);
     }

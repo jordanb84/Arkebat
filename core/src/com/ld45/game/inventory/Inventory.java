@@ -73,9 +73,9 @@ public class Inventory {
             }
         }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.U)) {
+        /**if(Gdx.input.isKeyJustPressed(Input.Keys.U)) {
             this.moveDown();
-        }
+        }**/
 
         if(!this.player.getParentMap().isGameOver() && !this.player.getParentMap().isGameWon()) {
             if (this.player.isMoving()) {
